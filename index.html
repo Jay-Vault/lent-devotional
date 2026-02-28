@@ -3,9 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>STOP & STAY · Lent Devotional</title>
+  <title>Jay's Lent Devotional</title>
+
+  <!-- Baemin-like (HannaPro) from CDN + SUIT from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
+    /* 배민 느낌: HannaPro (제목/테마용) */
+    @font-face {
+      font-family: 'HannaPro';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root{
       --bg:#f8f6f2;
       --card:#ffffff;
@@ -18,7 +32,7 @@
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      font-family:"SUIT",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
       background:var(--bg);
       color:var(--ink);
       line-height:1.65;
@@ -26,11 +40,17 @@
     .wrap{ max-width:820px; margin:0 auto; padding:32px 18px 72px; }
 
     header{ margin-bottom:18px; }
-    h1{ margin:0; font-size:26px; letter-spacing:.2px; }
+    h1{
+      margin:0;
+      font-size:28px;
+      letter-spacing:.2px;
+      font-family:'HannaPro',"SUIT",sans-serif;
+    }
     .badge{
       display:inline-block; margin-left:8px; padding:3px 10px; border-radius:999px;
-      background:var(--soft); color:var(--accent); font-size:12px; font-weight:700;
+      background:var(--soft); color:var(--accent); font-size:12px; font-weight:800;
       vertical-align:middle;
+      font-family:"SUIT",sans-serif;
     }
     .sub{ margin-top:10px; color:var(--muted); font-size:15px; }
 
@@ -44,10 +64,10 @@
       box-shadow:0 10px 24px rgba(0,0,0,.04);
     }
     .timeline-title{
-      font-size:13px;
-      font-weight:900;
-      color:var(--accent);
+      font-size:14px;
       margin-bottom:10px;
+      color:var(--accent);
+      font-family:'HannaPro',"SUIT",sans-serif;
     }
     .timeline-row{
       display:flex;
@@ -57,16 +77,9 @@
       scroll-snap-type:x mandatory;
       -webkit-overflow-scrolling:touch;
     }
-    .titem{
-      flex:0 0 auto;
-      scroll-snap-align:start;
-      text-decoration:none;
-      color:inherit;
-    }
+    .titem{ flex:0 0 auto; scroll-snap-align:start; text-decoration:none; color:inherit; }
     .tpill{
-      display:flex;
-      align-items:center;
-      gap:10px;
+      display:flex; align-items:center; gap:10px;
       padding:10px 12px;
       border-radius:999px;
       border:1px solid var(--line);
@@ -80,8 +93,7 @@
       flex:0 0 auto;
     }
     .tdate{ font-weight:900; font-size:12px; color:var(--accent); }
-    .tlabel{ font-size:12px; color:var(--muted); font-weight:700; }
-    .titem:hover .tpill{ filter:brightness(.985); }
+    .tlabel{ font-size:12px; color:var(--muted); font-weight:800; }
 
     /* ===== Cards ===== */
     .card{
@@ -91,13 +103,18 @@
       padding:18px 18px 22px;
       margin-bottom:18px;
       box-shadow:0 10px 24px rgba(0,0,0,.04);
-      scroll-margin-top:18px; /* for anchor jumps */
+      scroll-margin-top:18px;
     }
     .meta{ color:var(--accent); font-weight:900; font-size:14px; margin-bottom:6px; }
-    .theme{ font-size:18px; font-weight:900; margin:4px 0 6px; }
+    .theme{
+      font-size:20px;
+      margin:4px 0 6px;
+      font-family:'HannaPro',"SUIT",sans-serif;
+      color:#1f1f1f;
+    }
     .scripture,.songline{ font-size:14px; color:var(--muted); }
 
-    /* Player block */
+    /* Player */
     .player{
       margin-top:12px;
       padding:12px;
@@ -113,14 +130,9 @@
       margin-bottom:10px;
       flex-wrap:wrap;
     }
-    .player-title{
-      font-size:13px;
-      color:var(--muted);
-      font-weight:900;
-    }
+    .player-title{ font-size:13px; color:var(--muted); font-weight:900; }
     .link{
-      font-size:12px;
-      font-weight:800;
+      font-size:12px; font-weight:900;
       color:var(--accent);
       background:var(--soft);
       padding:6px 10px;
@@ -150,25 +162,14 @@
       white-space:pre-line;
     }
 
-    /* ===== Tabs (for multi-song days) ===== */
-    .tabs{
-      margin-top:8px;
-    }
-    .tabs input[type="radio"]{
-      position:absolute;
-      opacity:0;
-      pointer-events:none;
-    }
-    .tabbar{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:10px;
-    }
+    /* ===== Tabs (multi-song) ===== */
+    .tabs{ margin-top:8px; }
+    .tabs input[type="radio"]{ position:absolute; opacity:0; pointer-events:none; }
+    .tabbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
     .tab{
       cursor:pointer;
       font-size:12px;
-      font-weight:900;
+      font-weight:950;
       padding:7px 10px;
       border-radius:999px;
       border:1px solid var(--line);
@@ -176,19 +177,16 @@
       color:var(--accent);
       user-select:none;
     }
-    /* active tab styles */
     #ps42_1:checked ~ .tabbar label[for="ps42_1"],
     #ps42_2:checked ~ .tabbar label[for="ps42_2"]{
       background:var(--soft);
       border-color:rgba(90,61,122,.25);
     }
-    .tabpanels .panel{
-      display:none;
-    }
+    .tabpanels .panel{ display:none; }
     #ps42_1:checked ~ .tabpanels #panel_ps42_1{ display:block; }
     #ps42_2:checked ~ .tabpanels #panel_ps42_2{ display:block; }
 
-    /* Lyrics accordion (only used on 2/26) */
+    /* Lyrics accordion (2/26 only) */
     details.lyrics{
       margin-top:12px;
       border:1px solid var(--line);
@@ -199,10 +197,10 @@
     details.lyrics summary{
       cursor:pointer;
       padding:12px 12px;
-      font-weight:950;
-      color:var(--accent);
       list-style:none;
       user-select:none;
+      color:var(--accent);
+      font-family:'HannaPro',"SUIT",sans-serif;
       background:linear-gradient(180deg,#ffffff 0%, #fbf9ff 100%);
     }
     details.lyrics summary::-webkit-details-marker{ display:none; }
@@ -224,10 +222,10 @@
     }
 
     @media (max-width:480px){
-      h1{ font-size:24px; }
+      h1{ font-size:26px; }
       .embed iframe{ height:160px; }
       .tpill{ padding:9px 10px; }
-      .tlabel{ display:none; } /* 모바일에선 날짜+점만 보이게 */
+      .tlabel{ display:none; }
     }
   </style>
 </head>
@@ -235,14 +233,14 @@
 <body>
   <div class="wrap">
     <header>
-      <h1>STOP & STAY · Lent Devotional <span class="badge">Link Only</span></h1>
+      <h1>Jay's Lent Devotional <span class="badge">Link Only</span></h1>
       <div class="sub">
         멈추고, 하나님께 머무는 사순절<br/>
         묵상 기록과 직접 녹음한 찬양을 함께 나눕니다.
       </div>
     </header>
 
-    <!-- Timeline (jump links) -->
+    <!-- Timeline -->
     <section class="timeline" aria-label="Lent timeline">
       <div class="timeline-title">📍 날짜별 바로가기</div>
       <div class="timeline-row">
@@ -301,7 +299,7 @@
 하루의 태도와 선택을 주님께 맡기는 묵상</p>
     </section>
 
-    <!-- 2/21 (Tabbed: 2 songs) -->
+    <!-- 2/21 (Tabbed) -->
     <section class="card" id="d0221">
       <div class="meta">🗓️ 2월 21일 (토)</div>
       <div class="theme">Remembering to Forget</div>
@@ -311,7 +309,7 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기 (2곡)</div>
-          <span style="font-size:12px;color:var(--muted);font-weight:800;">탭을 눌러 전환</span>
+          <span style="font-size:12px;color:var(--muted);font-weight:900;">탭을 눌러 전환</span>
         </div>
 
         <div class="tabs">
@@ -324,7 +322,6 @@
           </div>
 
           <div class="tabpanels">
-            <!-- panel 1 -->
             <div class="panel" id="panel_ps42_1" role="tabpanel">
               <div class="player-head" style="margin:0 0 10px;">
                 <div class="player-title">🎵 너는 너의 하나님을 바라라</div>
@@ -335,7 +332,6 @@
               </div>
             </div>
 
-            <!-- panel 2 -->
             <div class="panel" id="panel_ps42_2" role="tabpanel">
               <div class="player-head" style="margin:0 0 10px;">
                 <div class="player-title">🎵 목마른 사슴이</div>
