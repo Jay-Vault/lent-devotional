@@ -23,17 +23,67 @@
       color:var(--ink);
       line-height:1.65;
     }
-    .wrap{ max-width:780px; margin:0 auto; padding:32px 18px 72px; }
+    .wrap{ max-width:820px; margin:0 auto; padding:32px 18px 72px; }
 
-    header{ margin-bottom:28px; }
+    header{ margin-bottom:18px; }
     h1{ margin:0; font-size:26px; letter-spacing:.2px; }
     .badge{
       display:inline-block; margin-left:8px; padding:3px 10px; border-radius:999px;
-      background:var(--soft); color:var(--accent); font-size:12px; font-weight:600;
+      background:var(--soft); color:var(--accent); font-size:12px; font-weight:700;
       vertical-align:middle;
     }
     .sub{ margin-top:10px; color:var(--muted); font-size:15px; }
 
+    /* ===== Timeline ===== */
+    .timeline{
+      margin:18px 0 26px;
+      padding:14px 14px;
+      background:linear-gradient(180deg,#fff 0%,#faf8ff 100%);
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
+    }
+    .timeline-title{
+      font-size:13px;
+      font-weight:900;
+      color:var(--accent);
+      margin-bottom:10px;
+    }
+    .timeline-row{
+      display:flex;
+      gap:12px;
+      overflow:auto;
+      padding-bottom:6px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+    }
+    .titem{
+      flex:0 0 auto;
+      scroll-snap-align:start;
+      text-decoration:none;
+      color:inherit;
+    }
+    .tpill{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      white-space:nowrap;
+    }
+    .tdot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(90,61,122,.12);
+      flex:0 0 auto;
+    }
+    .tdate{ font-weight:900; font-size:12px; color:var(--accent); }
+    .tlabel{ font-size:12px; color:var(--muted); font-weight:700; }
+    .titem:hover .tpill{ filter:brightness(.985); }
+
+    /* ===== Cards ===== */
     .card{
       background:var(--card);
       border:1px solid var(--line);
@@ -41,12 +91,13 @@
       padding:18px 18px 22px;
       margin-bottom:18px;
       box-shadow:0 10px 24px rgba(0,0,0,.04);
+      scroll-margin-top:18px; /* for anchor jumps */
     }
-
-    .meta{ color:var(--accent); font-weight:800; font-size:14px; margin-bottom:6px; }
-    .theme{ font-size:18px; font-weight:800; margin:4px 0 6px; }
+    .meta{ color:var(--accent); font-weight:900; font-size:14px; margin-bottom:6px; }
+    .theme{ font-size:18px; font-weight:900; margin:4px 0 6px; }
     .scripture,.songline{ font-size:14px; color:var(--muted); }
 
+    /* Player block */
     .player{
       margin-top:12px;
       padding:12px;
@@ -60,15 +111,16 @@
       align-items:center;
       gap:10px;
       margin-bottom:10px;
+      flex-wrap:wrap;
     }
     .player-title{
       font-size:13px;
       color:var(--muted);
-      font-weight:800;
+      font-weight:900;
     }
     .link{
       font-size:12px;
-      font-weight:700;
+      font-weight:800;
       color:var(--accent);
       background:var(--soft);
       padding:6px 10px;
@@ -98,6 +150,44 @@
       white-space:pre-line;
     }
 
+    /* ===== Tabs (for multi-song days) ===== */
+    .tabs{
+      margin-top:8px;
+    }
+    .tabs input[type="radio"]{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+    .tabbar{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:10px;
+    }
+    .tab{
+      cursor:pointer;
+      font-size:12px;
+      font-weight:900;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--accent);
+      user-select:none;
+    }
+    /* active tab styles */
+    #ps42_1:checked ~ .tabbar label[for="ps42_1"],
+    #ps42_2:checked ~ .tabbar label[for="ps42_2"]{
+      background:var(--soft);
+      border-color:rgba(90,61,122,.25);
+    }
+    .tabpanels .panel{
+      display:none;
+    }
+    #ps42_1:checked ~ .tabpanels #panel_ps42_1{ display:block; }
+    #ps42_2:checked ~ .tabpanels #panel_ps42_2{ display:block; }
+
     /* Lyrics accordion (only used on 2/26) */
     details.lyrics{
       margin-top:12px;
@@ -109,7 +199,7 @@
     details.lyrics summary{
       cursor:pointer;
       padding:12px 12px;
-      font-weight:900;
+      font-weight:950;
       color:var(--accent);
       list-style:none;
       user-select:none;
@@ -136,6 +226,8 @@
     @media (max-width:480px){
       h1{ font-size:24px; }
       .embed iframe{ height:160px; }
+      .tpill{ padding:9px 10px; }
+      .tlabel{ display:none; } /* 모바일에선 날짜+점만 보이게 */
     }
   </style>
 </head>
@@ -150,8 +242,25 @@
       </div>
     </header>
 
+    <!-- Timeline (jump links) -->
+    <section class="timeline" aria-label="Lent timeline">
+      <div class="timeline-title">📍 날짜별 바로가기</div>
+      <div class="timeline-row">
+        <a class="titem" href="#d0219"><div class="tpill"><span class="tdot"></span><span class="tdate">2/19</span><span class="tlabel">Lavish Love</span></div></a>
+        <a class="titem" href="#d0220"><div class="tpill"><span class="tdot"></span><span class="tdate">2/20</span><span class="tlabel">Living for Jesus</span></div></a>
+        <a class="titem" href="#d0221"><div class="tpill"><span class="tdot"></span><span class="tdate">2/21</span><span class="tlabel">Psalm 42</span></div></a>
+        <a class="titem" href="#d0222"><div class="tpill"><span class="tdot"></span><span class="tdate">2/22</span><span class="tlabel">Schooled in Love</span></div></a>
+        <a class="titem" href="#d0223"><div class="tpill"><span class="tdot"></span><span class="tdate">2/23</span><span class="tlabel">Humble Leadership</span></div></a>
+        <a class="titem" href="#d0224"><div class="tpill"><span class="tdot"></span><span class="tdate">2/24</span><span class="tlabel">Missing the Divine</span></div></a>
+        <a class="titem" href="#d0225"><div class="tpill"><span class="tdot"></span><span class="tdate">2/25</span><span class="tlabel">Exodus 20</span></div></a>
+        <a class="titem" href="#d0226"><div class="tpill"><span class="tdot"></span><span class="tdate">2/26</span><span class="tlabel">Rainbow Answer</span></div></a>
+        <a class="titem" href="#d0227"><div class="tpill"><span class="tdot"></span><span class="tdate">2/27</span><span class="tlabel">Prayer Walk</span></div></a>
+        <a class="titem" href="#d0228"><div class="tpill"><span class="tdot"></span><span class="tdate">2/28</span><span class="tlabel">Faith of Friends</span></div></a>
+      </div>
+    </section>
+
     <!-- 2/19 -->
-    <section class="card">
+    <section class="card" id="d0219">
       <div class="meta">🗓️ 2월 19일 (목)</div>
       <div class="theme">Lavish Love</div>
       <div class="scripture">📖 레위기 25:35–43</div>
@@ -160,16 +269,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/19mR4h9sRhYgCqeY4J_ZZPuk7VgvwxB4M/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/19mR4h9sRhYgCqeY4J_ZZPuk7VgvwxB4M/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/19mR4h9sRhYgCqeY4J_ZZPuk7VgvwxB4M/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/19mR4h9sRhYgCqeY4J_ZZPuk7VgvwxB4M/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -178,7 +281,7 @@
     </section>
 
     <!-- 2/20 -->
-    <section class="card">
+    <section class="card" id="d0220">
       <div class="meta">🗓️ 2월 20일 (금)</div>
       <div class="theme">Living for Jesus</div>
       <div class="scripture">📖 데살로니가전서 5:12–23</div>
@@ -187,16 +290,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1FNmHRRbzaYHS1puO7N72O71M8lVrmbsQ/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/1FNmHRRbzaYHS1puO7N72O71M8lVrmbsQ/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/1FNmHRRbzaYHS1puO7N72O71M8lVrmbsQ/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/1FNmHRRbzaYHS1puO7N72O71M8lVrmbsQ/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -204,42 +301,51 @@
 하루의 태도와 선택을 주님께 맡기는 묵상</p>
     </section>
 
-    <!-- 2/21 -->
-    <section class="card">
+    <!-- 2/21 (Tabbed: 2 songs) -->
+    <section class="card" id="d0221">
       <div class="meta">🗓️ 2월 21일 (토)</div>
       <div class="theme">Remembering to Forget</div>
       <div class="scripture">📖 시편 42:1–8</div>
-      <div class="songline">🎵 너는 너의 하나님을 바라라 / 목마른 사슴이</div>
+      <div class="songline">🎵 (탭으로 선택) 너는 너의 하나님을 바라라 · 목마른 사슴이</div>
 
       <div class="player">
         <div class="player-head">
-          <div class="player-title">🎧 듣기 (1) 너는 너의 하나님을 바라라</div>
-          <a class="link" href="https://drive.google.com/file/d/1d7heyWkA_2-rwP9czYt1AbdqATa-U91s/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <div class="player-title">🎧 듣기 (2곡)</div>
+          <span style="font-size:12px;color:var(--muted);font-weight:800;">탭을 눌러 전환</span>
         </div>
-        <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/1d7heyWkA_2-rwP9czYt1AbdqATa-U91s/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
-        </div>
-      </div>
 
-      <div class="player">
-        <div class="player-head">
-          <div class="player-title">🎧 듣기 (2) 목마른 사슴이</div>
-          <a class="link" href="https://drive.google.com/file/d/1bqZgjst5zJsmVT6pZFK5-dT3t7cmctSe/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
-        </div>
-        <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/1bqZgjst5zJsmVT6pZFK5-dT3t7cmctSe/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+        <div class="tabs">
+          <input type="radio" name="ps42" id="ps42_1" checked>
+          <input type="radio" name="ps42" id="ps42_2">
+
+          <div class="tabbar" role="tablist" aria-label="Psalm 42 songs">
+            <label class="tab" for="ps42_1" role="tab">너는 너의 하나님을 바라라</label>
+            <label class="tab" for="ps42_2" role="tab">목마른 사슴이</label>
+          </div>
+
+          <div class="tabpanels">
+            <!-- panel 1 -->
+            <div class="panel" id="panel_ps42_1" role="tabpanel">
+              <div class="player-head" style="margin:0 0 10px;">
+                <div class="player-title">🎵 너는 너의 하나님을 바라라</div>
+                <a class="link" href="https://drive.google.com/file/d/1d7heyWkA_2-rwP9czYt1AbdqATa-U91s/view" target="_blank" rel="noopener">Drive에서 열기</a>
+              </div>
+              <div class="embed">
+                <iframe src="https://drive.google.com/file/d/1d7heyWkA_2-rwP9czYt1AbdqATa-U91s/preview" allow="autoplay" loading="lazy"></iframe>
+              </div>
+            </div>
+
+            <!-- panel 2 -->
+            <div class="panel" id="panel_ps42_2" role="tabpanel">
+              <div class="player-head" style="margin:0 0 10px;">
+                <div class="player-title">🎵 목마른 사슴이</div>
+                <a class="link" href="https://drive.google.com/file/d/1bqZgjst5zJsmVT6pZFK5-dT3t7cmctSe/view" target="_blank" rel="noopener">Drive에서 열기</a>
+              </div>
+              <div class="embed">
+                <iframe src="https://drive.google.com/file/d/1bqZgjst5zJsmVT6pZFK5-dT3t7cmctSe/preview" allow="autoplay" loading="lazy"></iframe>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -248,7 +354,7 @@
     </section>
 
     <!-- 2/22 -->
-    <section class="card">
+    <section class="card" id="d0222">
       <div class="meta">🗓️ 2월 22일 (주일)</div>
       <div class="theme">Schooled in Love</div>
       <div class="scripture">📖 요한일서 4:16–21</div>
@@ -257,16 +363,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -275,7 +375,7 @@
     </section>
 
     <!-- 2/23 -->
-    <section class="card">
+    <section class="card" id="d0223">
       <div class="meta">🗓️ 2월 23일 (월)</div>
       <div class="theme">Humble Leadership</div>
       <div class="scripture">📖 요한복음 1:19–28</div>
@@ -284,16 +384,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -302,7 +396,7 @@
     </section>
 
     <!-- 2/24 -->
-    <section class="card">
+    <section class="card" id="d0224">
       <div class="meta">🗓️ 2월 24일 (화)</div>
       <div class="theme">Missing the Divine</div>
       <div class="scripture">📖 이사야 53:1–6</div>
@@ -311,16 +405,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -329,7 +417,7 @@
     </section>
 
     <!-- 2/25 -->
-    <section class="card">
+    <section class="card" id="d0225">
       <div class="meta">🗓️ 2월 25일 (수)</div>
       <div class="theme">Abusing God’s Name</div>
       <div class="scripture">📖 출애굽기 20:1–4, 7–8, 12–17</div>
@@ -338,16 +426,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -356,7 +438,7 @@
     </section>
 
     <!-- 2/26 -->
-    <section class="card">
+    <section class="card" id="d0226">
       <div class="meta">🗓️ 2월 26일 (목)</div>
       <div class="theme">God’s Rainbow Answer</div>
       <div class="scripture">📖 창세기 9:12–16</div>
@@ -365,16 +447,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/1MBC8MczAvlbQRsLOdh3OvMibN-gDF147/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/1MBC8MczAvlbQRsLOdh3OvMibN-gDF147/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/1MBC8MczAvlbQRsLOdh3OvMibN-gDF147/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/1MBC8MczAvlbQRsLOdh3OvMibN-gDF147/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -441,7 +517,7 @@
     </section>
 
     <!-- 2/27 -->
-    <section class="card">
+    <section class="card" id="d0227">
       <div class="meta">🗓️ 2월 27일 (금)</div>
       <div class="theme">Prayer Walk</div>
       <div class="scripture">📖 열왕기하 4:31–35</div>
@@ -450,16 +526,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
@@ -467,7 +537,7 @@
     </section>
 
     <!-- 2/28 -->
-    <section class="card">
+    <section class="card" id="d0228">
       <div class="meta">🗓️ 2월 28일 (토)</div>
       <div class="theme">Faith of Friends</div>
       <div class="scripture">📖 마가복음 2:1–5</div>
@@ -476,16 +546,10 @@
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
-          <a class="link" href="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/view" target="_blank" rel="noopener">
-            Drive에서 열기
-          </a>
+          <a class="link" href="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/view" target="_blank" rel="noopener">Drive에서 열기</a>
         </div>
         <div class="embed">
-          <iframe
-            src="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/preview"
-            allow="autoplay"
-            loading="lazy">
-          </iframe>
+          <iframe src="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/preview" allow="autoplay" loading="lazy"></iframe>
         </div>
       </div>
 
