@@ -18,7 +18,7 @@
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
       background:var(--bg);
       color:var(--ink);
       line-height:1.65;
@@ -30,6 +30,7 @@
     .badge{
       display:inline-block; margin-left:8px; padding:3px 10px; border-radius:999px;
       background:var(--soft); color:var(--accent); font-size:12px; font-weight:600;
+      vertical-align:middle;
     }
     .sub{ margin-top:10px; color:var(--muted); font-size:15px; }
 
@@ -39,42 +40,91 @@
       border-radius:16px;
       padding:18px 18px 22px;
       margin-bottom:18px;
+      box-shadow:0 10px 24px rgba(0,0,0,.04);
     }
     .meta{ color:var(--accent); font-weight:600; font-size:14px; margin-bottom:6px; }
     .theme{ font-size:18px; font-weight:700; margin:4px 0 6px; }
     .scripture,.song{ font-size:14px; color:var(--muted); }
 
-    .player{
+    /* 🎵 Listen block */
+    .listen{
       margin-top:14px;
       padding:12px;
       border:1px solid var(--line);
       border-radius:14px;
       background:linear-gradient(180deg,#fff 0%,#faf8ff 100%);
-      box-shadow:0 10px 24px rgba(0,0,0,.06);
     }
-    .player-head{
+    .listen-head{
       display:flex; align-items:center; justify-content:space-between;
       gap:10px; margin-bottom:10px;
     }
-    .player-title{ font-size:13px; color:var(--muted); }
+    .listen-title{ font-size:13px; color:var(--muted); }
 
-    .btn{
-      font-size:12px; font-weight:600;
-      color:var(--accent); background:var(--soft);
-      padding:6px 10px; border-radius:999px;
+    /* Big primary button */
+    .btn-primary{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      background:var(--accent);
+      color:#fff;
       text-decoration:none;
-      border:1px solid rgba(90,61,122,.18);
-      white-space:nowrap;
+      font-weight:700;
+      border:1px solid rgba(0,0,0,.04);
+      box-shadow:0 10px 24px rgba(90,61,122,.18);
+      transition:transform .06s ease, filter .06s ease;
+      user-select:none;
+    }
+    .btn-primary:hover{ filter:brightness(.98); }
+    .btn-primary:active{ transform:translateY(1px); }
+    .btn-primary .subtxt{
+      font-weight:600;
+      opacity:.9;
+      font-size:12px;
     }
 
-    .sc-wrap{
+    /* Secondary actions */
+    .actions{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    details{
+      flex: 1 1 auto;
+      min-width: 220px;
+    }
+    details summary{
+      cursor:pointer;
+      color:var(--accent);
+      font-weight:700;
+      font-size:13px;
+      list-style:none;
+      user-select:none;
+    }
+    details summary::-webkit-details-marker{ display:none; }
+
+    .hint{
+      margin-top:6px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .embed{
+      margin-top:10px;
       border-radius:12px;
       overflow:hidden;
       background:#fff;
+      border:1px solid var(--line);
     }
-    .sc-wrap iframe{
+    .embed iframe{
       width:100%;
-      height:300px;
+      height:140px;
       border:0;
       display:block;
     }
@@ -91,7 +141,8 @@
 
     @media (max-width:480px){
       h1{ font-size:24px; }
-      .sc-wrap iframe{ height:340px; }
+      .embed iframe{ height:160px; }
+      .actions{ gap:8px; }
     }
   </style>
 </head>
@@ -102,7 +153,7 @@
       <h1>STOP & STAY · Lent Devotional <span class="badge">Link Only</span></h1>
       <div class="sub">
         멈추고, 하나님께 머무는 사순절<br/>
-        묵상과 찬양을 기록하고, 조용히 나눕니다.
+        묵상 기록과 직접 녹음한 찬양을 함께 나눕니다.
       </div>
     </header>
 
@@ -113,22 +164,32 @@
       <div class="scripture">📖 열왕기하 4:31–35</div>
       <div class="song">🎵 하나님의 세계 (Lent)</div>
 
-      <div class="player">
-        <div class="player-head">
-          <div class="player-title">🎧 SoundCloud로 듣기</div>
-          <a class="btn"
-             href="https://soundcloud.com/jh-jun-juns/hananimyi-segye-2/s-6s3j0hr2r4q"
-             target="_blank" rel="noopener">
-            SoundCloud 열기
-          </a>
+      <div class="listen">
+        <div class="listen-head">
+          <div class="listen-title">🎧 찬양</div>
         </div>
 
-        <div class="sc-wrap">
-          <iframe
-            scrolling="no"
-            allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2275137638%3Fsecret_token%3Ds-6s3j0hr2r4q&color=%235a3d7a&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-          </iframe>
+        <!-- MAIN: open in new tab (Drive UI) -->
+        <a class="btn-primary"
+           href="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/view"
+           target="_blank" rel="noopener">
+          ▶︎ 하나님의 세계 듣기
+          <span class="subtxt">새 탭에서 재생</span>
+        </a>
+
+        <div class="actions">
+          <!-- OPTIONAL: inline player toggle -->
+          <details>
+            <summary>페이지 안에서 듣기 (펼치기)</summary>
+            <div class="hint">일부 환경에서는 로딩이 느릴 수 있어요.</div>
+            <div class="embed">
+              <iframe
+                src="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/preview"
+                allow="autoplay"
+                loading="lazy">
+              </iframe>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -142,22 +203,32 @@
       <div class="scripture">📖 마가복음 2:1–5</div>
       <div class="song">🎵 혼자 걷지 않을 거예요 (Lent)</div>
 
-      <div class="player">
-        <div class="player-head">
-          <div class="player-title">🎧 SoundCloud로 듣기</div>
-          <a class="btn"
-             href="https://soundcloud.com/jh-jun-juns/honja-geodji-anheul-geoyeyo-1/s-lK6X4CdLYUp"
-             target="_blank" rel="noopener">
-            SoundCloud 열기
-          </a>
+      <div class="listen">
+        <div class="listen-head">
+          <div class="listen-title">🎧 찬양</div>
         </div>
 
-        <div class="sc-wrap">
-          <iframe
-            scrolling="no"
-            allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%3Atracks%3A2275137635%3Fsecret_token%3Ds-lK6X4CdLYUp&color=%235a3d7a&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true">
-          </iframe>
+        <!-- MAIN: open in new tab (Drive UI) -->
+        <a class="btn-primary"
+           href="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/view"
+           target="_blank" rel="noopener">
+          ▶︎ 혼자 걷지 않을 거예요 듣기
+          <span class="subtxt">새 탭에서 재생</span>
+        </a>
+
+        <div class="actions">
+          <!-- OPTIONAL: inline player toggle -->
+          <details>
+            <summary>페이지 안에서 듣기 (펼치기)</summary>
+            <div class="hint">일부 환경에서는 로딩이 느릴 수 있어요.</div>
+            <div class="embed">
+              <iframe
+                src="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/preview"
+                allow="autoplay"
+                loading="lazy">
+              </iframe>
+            </div>
+          </details>
         </div>
       </div>
 
