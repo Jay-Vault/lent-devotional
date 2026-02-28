@@ -15,23 +15,23 @@
       --line:#e6e2ec;
       --soft:#efe9f7;
     }
-    *{box-sizing:border-box;}
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family:system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      font-family: system-ui,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
       background:var(--bg);
       color:var(--ink);
       line-height:1.65;
     }
-    .wrap{max-width:760px;margin:0 auto;padding:32px 18px 72px;}
-    header{margin-bottom:28px;}
-    h1{margin:0;font-size:26px;letter-spacing:.2px;}
+    .wrap{ max-width:760px; margin:0 auto; padding:32px 18px 72px; }
+
+    header{ margin-bottom:28px; }
+    h1{ margin:0; font-size:26px; letter-spacing:.2px; }
     .badge{
-      display:inline-block;margin-left:8px;padding:3px 10px;border-radius:999px;
-      background:var(--soft);color:var(--accent);font-size:12px;font-weight:600;
-      vertical-align:middle;
+      display:inline-block; margin-left:8px; padding:3px 10px; border-radius:999px;
+      background:var(--soft); color:var(--accent); font-size:12px; font-weight:600; vertical-align:middle;
     }
-    .sub{margin-top:10px;color:var(--muted);font-size:15px;}
+    .sub{ margin-top:10px; color:var(--muted); font-size:15px; }
 
     .card{
       background:var(--card);
@@ -40,11 +40,11 @@
       padding:18px 18px 22px;
       margin-bottom:18px;
     }
-    .meta{color:var(--accent);font-weight:600;font-size:14px;margin-bottom:6px;}
-    .theme{font-size:18px;font-weight:700;margin:4px 0 6px;}
-    .scripture,.song{font-size:14px;color:var(--muted);}
+    .meta{ color:var(--accent); font-weight:600; font-size:14px; margin-bottom:6px; }
+    .theme{ font-size:18px; font-weight:700; margin:4px 0 6px; }
+    .scripture,.song{ font-size:14px; color:var(--muted); }
 
-    /* 🎵 Custom Player Frame */
+    /* 🎧 Player Frame (SoundCloud) */
     .player{
       margin-top:14px;
       padding:12px;
@@ -54,64 +54,46 @@
       box-shadow:0 10px 24px rgba(0,0,0,.06);
     }
     .player-head{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; margin-bottom:10px;
     }
-    .player-title{font-size:13px;color:var(--muted);}
-    .btns{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
+    .player-title{ font-size:13px; color:var(--muted); }
+
     .btn{
-      font-size:12px;font-weight:600;color:var(--accent);background:var(--soft);
-      padding:6px 10px;border-radius:999px;text-decoration:none;
+      font-size:12px; font-weight:600;
+      color:var(--accent); background:var(--soft);
+      padding:6px 10px; border-radius:999px;
+      text-decoration:none;
       border:1px solid rgba(90,61,122,.18);
       white-space:nowrap;
-      cursor:pointer;
     }
-    .btn:hover{filter:brightness(.98);}
+    .btn:hover{ filter:brightness(.98); }
 
-    audio{
-      width:100%;
-      margin-top:2px;
-    }
-
-    /* Fallback area (optional) */
-    details{
-      margin-top:10px;
-      border-top:1px dashed rgba(90,61,122,.25);
-      padding-top:10px;
-    }
-    details summary{
-      cursor:pointer;
-      color:var(--accent);
-      font-weight:600;
-      font-size:13px;
-      list-style:none;
-    }
-    details summary::-webkit-details-marker{display:none;}
-    .fallback{
-      margin-top:10px;
-    }
-    .fallback iframe{
-      width:100%;
-      height:150px;
-      border:0;
+    .sc-wrap{
       border-radius:12px;
+      overflow:hidden; /* iframe 둥글게 보이게 */
       background:#fff;
     }
-    .hint{
-      margin-top:8px;
-      font-size:12px;
+    .sc-wrap iframe{
+      display:block;
+      width:100%;
+      height:300px; /* visual 플레이어 */
+      border:0;
+    }
+
+    .line{ margin-top:14px; font-size:15px; }
+
+    footer{
+      margin-top:48px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      font-size:13px;
       color:var(--muted);
     }
 
-    .line{margin-top:14px;font-size:15px;}
-
-    footer{
-      margin-top:48px;padding-top:18px;border-top:1px solid var(--line);
-      font-size:13px;color:var(--muted);
-    }
-
     @media (max-width:480px){
-      h1{font-size:24px;}
-      .fallback iframe{height:170px;}
+      h1{ font-size:24px; }
+      .sc-wrap iframe{ height:340px; }
     }
   </style>
 </head>
@@ -135,33 +117,21 @@
 
       <div class="player">
         <div class="player-head">
-          <div class="player-title">▶️ 찬양 듣기 (테스트: Custom Audio)</div>
-          <div class="btns">
-            <a class="btn" href="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/view" target="_blank" rel="noopener">
-              Drive에서 열기
-            </a>
-          </div>
+          <div class="player-title">🎧 SoundCloud로 듣기</div>
+          <a class="btn"
+             href="https://soundcloud.com/jh-jun-juns/hananimyi-segye-2/s-6s3j0hr2r4q?in=jh-jun-juns/sets/lent/s-OZpCce730YI&si=7dee3a23aa87412088f49eef21822e41&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+             target="_blank" rel="noopener">
+            SoundCloud 열기
+          </a>
         </div>
 
-        <!-- OPTION 1: Direct audio (may fail depending on browser/Drive policy) -->
-        <audio controls preload="none">
-          <source src="https://drive.google.com/uc?export=download&id=18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ" type="audio/mpeg">
-          이 브라우저에서는 오디오 재생이 지원되지 않습니다.
-        </audio>
-
-        <details>
-          <summary>재생이 안 되나요? (대체 재생 열기)</summary>
-          <div class="fallback">
-            <iframe
-              src="https://drive.google.com/file/d/18Zp-tMldmuSXerCGYsdvC_gqgJJEv0YZ/preview"
-              allow="autoplay"
-              loading="lazy">
-            </iframe>
-            <div class="hint">
-              위 플레이어가 안 보이거나 재생이 막히면, 상단의 “Drive에서 열기”를 사용해 주세요.
-            </div>
-          </div>
-        </details>
+        <div class="sc-wrap">
+          <iframe
+            scrolling="no"
+            allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjh-jun-juns%2Fhananimyi-segye-2%2Fs-6s3j0hr2r4q%3Fin%3Djh-jun-juns%2Fsets%2Flent%2Fs-OZpCce730YI%26si%3D7dee3a23aa87412088f49eef21822e41%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=%235a3d7a&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+          </iframe>
+        </div>
       </div>
 
       <p class="line">주님이 이미 임하신 세계를, 우리는 기도로 걷는다.</p>
@@ -172,37 +142,25 @@
       <div class="meta">🗓️ 2월 28일 (토)</div>
       <div class="theme">Faith of Friends</div>
       <div class="scripture">📖 마가복음 2:1–5</div>
-      <div class="song">🎵 혼자 걷지 않을거예요 (Lent)</div>
+      <div class="song">🎵 혼자 걷지 않을 거예요 (Lent)</div>
 
       <div class="player">
         <div class="player-head">
-          <div class="player-title">▶️ 찬양 듣기 (테스트: Custom Audio)</div>
-          <div class="btns">
-            <a class="btn" href="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/view" target="_blank" rel="noopener">
-              Drive에서 열기
-            </a>
-          </div>
+          <div class="player-title">🎧 SoundCloud로 듣기</div>
+          <a class="btn"
+             href="https://soundcloud.com/jh-jun-juns/honja-geodji-anheul-geoyeyo-1/s-lK6X4CdLYUp?in=jh-jun-juns/sets/lent/s-OZpCce730YI&si=8c45bcbf2e4644b08bd8f9eb7a579261&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing"
+             target="_blank" rel="noopener">
+            SoundCloud 열기
+          </a>
         </div>
 
-        <!-- OPTION 1: Direct audio (may fail depending on browser/Drive policy) -->
-        <audio controls preload="none">
-          <source src="https://drive.google.com/uc?export=download&id=17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_" type="audio/mpeg">
-          이 브라우저에서는 오디오 재생이 지원되지 않습니다.
-        </audio>
-
-        <details>
-          <summary>재생이 안 되나요? (대체 재생 열기)</summary>
-          <div class="fallback">
-            <iframe
-              src="https://drive.google.com/file/d/17tuu-OeJY9HrkMFSrINa7TeS3yCTHs7_/preview"
-              allow="autoplay"
-              loading="lazy">
-            </iframe>
-            <div class="hint">
-              위 플레이어가 안 보이거나 재생이 막히면, 상단의 “Drive에서 열기”를 사용해 주세요.
-            </div>
-          </div>
-        </details>
+        <div class="sc-wrap">
+          <iframe
+            scrolling="no"
+            allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fjh-jun-juns%2Fhonja-geodji-anheul-geoyeyo-1%2Fs-lK6X4CdLYUp%3Fin%3Djh-jun-juns%2Fsets%2Flent%2Fs-OZpCce730YI%26si%3D8c45bcbf2e4644b08bd8f9eb7a579261%26utm_source%3Dclipboard%26utm_medium%3Dtext%26utm_campaign%3Dsocial_sharing&color=%235a3d7a&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+          </iframe>
+        </div>
       </div>
 
       <p class="line">우리는 혼자가 아니라, 서로의 믿음에 들려 주님 앞으로 간다.</p>
