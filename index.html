@@ -186,7 +186,6 @@
       position:relative;
       overflow:hidden;
     }
-    /* card variant (조금씩 다르게) */
     .card.v2{ --cardA: rgba(255,255,255,.04); --cardB: rgba(255,181,92,.08); }
     .card.v3{ --cardA: rgba(255,122,24,.10); --cardB: rgba(255,181,92,.06); }
 
@@ -237,7 +236,7 @@
 
     .scripture{ font-size:14px; color:var(--muted); }
 
-    /* ✅ Song chips */
+    /* Song chips */
     .songs{
       margin-top:10px;
       display:flex;
@@ -270,7 +269,7 @@
     }
     .songmeta{ font-size:12px; color:var(--muted2); font-weight:900; }
 
-    /* ===== Player ===== */
+    /* Player */
     .player{
       margin-top:12px;
       padding:12px;
@@ -310,10 +309,9 @@
       border:1px solid var(--embedLine);
       box-shadow: var(--embedShadow);
     }
-    /* ✅ 플레이어 높이 축소 */
     .embed iframe{
       width:100%;
-      height:86px;  /* was 120px */
+      height:86px; /* reduced */
       border:0;
       display:block;
     }
@@ -325,7 +323,7 @@
       color: rgba(241,239,233,.92);
     }
 
-    /* ===== Tabs (2/21) ===== */
+    /* Tabs (2/21) */
     .tabs{ margin-top:8px; }
     .tabs input[type="radio"]{ position:absolute; opacity:0; pointer-events:none; }
     .tabbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
@@ -382,15 +380,14 @@
       border-top:1px solid var(--line);
       font-size:13px;
       color:var(--muted);
+      white-space:pre-line;
     }
 
     @media (max-width:480px){
       .wrap{ padding:22px 14px 70px; }
       h1{ font-size:26px; }
-      .tpill{ padding:9px 10px; }
       .tlabel{ display:none; }
-      /* ✅ 모바일에서 더 축소 */
-      .embed iframe{ height:76px; }  /* was 92px */
+      .embed iframe{ height:76px; } /* mobile reduced */
     }
   </style>
 </head>
@@ -429,6 +426,9 @@
       </div>
     </section>
 
+    <!-- ✅ 아래 카드들(2/19~2/28)은 네가 방금 쓰던 “플레이어 낮춘 버전” 그대로 -->
+    <!-- (중간 카드 내용은 이전 메시지와 동일하니 그대로 유지됨) -->
+
     <!-- 2/19 -->
     <section class="card v1" id="d0219" data-date="02-19">
       <div class="meta">🗓️ 2월 19일 (목)</div>
@@ -437,11 +437,7 @@
         <span class="vibe"><span class="icon">🤲</span> 사랑 · 베풂</span>
       </div>
       <div class="scripture">📖 레위기 25:35–43</div>
-
-      <div class="songs">
-        <span class="songchip"><span class="note">♪</span>Reckless Love</span>
-      </div>
-
+      <div class="songs"><span class="songchip"><span class="note">♪</span>Reckless Love</span></div>
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -461,11 +457,7 @@
         <span class="vibe"><span class="icon">🧭</span> 삶 · 방향</span>
       </div>
       <div class="scripture">📖 데살로니가전서 5:12–23</div>
-
-      <div class="songs">
-        <span class="songchip"><span class="note">♪</span>한나의 노래</span>
-      </div>
-
+      <div class="songs"><span class="songchip"><span class="note">♪</span>한나의 노래</span></div>
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -485,7 +477,6 @@
         <span class="vibe"><span class="icon">🌿</span> 기억 · 회복</span>
       </div>
       <div class="scripture">📖 시편 42:1–8</div>
-
       <div class="songs">
         <span class="songchip"><span class="note">♪</span>너는 너의 하나님을 바라라</span>
         <span class="songchip"><span class="note">♪</span>목마른 사슴이</span>
@@ -539,11 +530,7 @@
         <span class="vibe"><span class="icon">❤️</span> 사랑 · 배움</span>
       </div>
       <div class="scripture">📖 요한일서 4:16–21</div>
-
-      <div class="songs">
-        <span class="songchip"><span class="note">♪</span>사랑은 여기 있으니</span>
-      </div>
-
+      <div class="songs"><span class="songchip"><span class="note">♪</span>사랑은 여기 있으니</span></div>
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -551,7 +538,6 @@
         </div>
         <div class="embed"><iframe src="https://drive.google.com/file/d/1DX6hIalzoAX_13R5E9eFDaAh0EMnkd1S/preview" allow="autoplay" loading="lazy"></iframe></div>
       </div>
-
       <p class="one-liner">사랑을 배워가는
 하나님께 먼저 사랑받은 존재로 서기</p>
     </section>
@@ -564,12 +550,9 @@
         <span class="vibe"><span class="icon">👑</span> 겸손 · 왕되심</span>
       </div>
       <div class="scripture">📖 요한복음 1:19–28</div>
-
-      <!-- ✅ 한곡/한파일이므로 칩 하나 -->
       <div class="songs">
         <span class="songchip"><span class="note">♪</span>내 마음의 한자리 + 주님만이 왕이십니다</span>
       </div>
-
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -577,7 +560,6 @@
         </div>
         <div class="embed"><iframe src="https://drive.google.com/file/d/1AAtkVltNvGm_EsuwccRuMeSJxNu9AP3i/preview" allow="autoplay" loading="lazy"></iframe></div>
       </div>
-
       <p class="one-liner">드러남이 아닌 물러섬으로
 주님을 가리키는 리더십</p>
     </section>
@@ -590,11 +572,7 @@
         <span class="vibe"><span class="icon">🌊</span> 갈망 · 동행</span>
       </div>
       <div class="scripture">📖 이사야 53:1–6</div>
-
-      <div class="songs">
-        <span class="songchip"><span class="note">♪</span>주님과 호숫가를 거닐다</span>
-      </div>
-
+      <div class="songs"><span class="songchip"><span class="note">♪</span>주님과 호숫가를 거닐다</span></div>
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -602,7 +580,6 @@
         </div>
         <div class="embed"><iframe src="https://drive.google.com/file/d/1jP_u2klCiMLQ2WlojhnhA-j2oIx4AuAv/preview" allow="autoplay" loading="lazy"></iframe></div>
       </div>
-
       <p class="one-liner">알아보지 못했던 하나님,
 그러나 끝까지 우리를 향해 걸어오신 분</p>
     </section>
@@ -615,11 +592,7 @@
         <span class="vibe"><span class="icon">🏷️</span> 이름 · 거룩</span>
       </div>
       <div class="scripture">📖 출애굽기 20:1–4, 7–8, 12–17</div>
-
-      <div class="songs">
-        <span class="songchip"><span class="note">♪</span>어둔 날 다 지나고</span>
-      </div>
-
+      <div class="songs"><span class="songchip"><span class="note">♪</span>어둔 날 다 지나고</span></div>
       <div class="player">
         <div class="player-head">
           <div class="player-title">🎧 듣기</div>
@@ -627,7 +600,6 @@
         </div>
         <div class="embed"><iframe src="https://drive.google.com/file/d/1ylmoYswpcSDhAsPDAf3aZExY1VOn1Y3l/preview" allow="autoplay" loading="lazy"></iframe></div>
       </div>
-
       <p class="one-liner">하나님의 이름을 부르며
 그 이름의 무게를 다시 배우는 시간</p>
     </section>
@@ -640,10 +612,7 @@
         <span class="vibe"><span class="icon">🌈</span> 약속 · 기억</span>
       </div>
       <div class="scripture">📖 창세기 9:12–16</div>
-
-      <div class="songs">
-        <span class="songchip"><span class="note">♪</span>Yet Not I But Through Christ In Me (편곡)</span>
-      </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>Yet Not I But Through Christ In Me (편곡)</span></div>
 
       <div class="player">
         <div class="player-head">
@@ -723,10 +692,7 @@
         <span class="vibe"><span class="icon">🙏</span> 기도 · 걸음</span>
       </div>
       <div class="scripture">📖 열왕기하 4:31–35</div>
-
-      <div class="songs">
-        <span class="songchip"><span class="note">♪</span>하나님의 세계 (Lent)</span>
-      </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>하나님의 세계 (Lent)</span></div>
 
       <div class="player">
         <div class="player-head">
@@ -747,10 +713,7 @@
         <span class="vibe"><span class="icon">🤝</span> 친구 · 믿음</span>
       </div>
       <div class="scripture">📖 마가복음 2:1–5</div>
-
-      <div class="songs">
-        <span class="songchip"><span class="note">♪</span>혼자 걷지 않을 거예요 (Lent)</span>
-      </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>혼자 걷지 않을 거예요 (Lent)</span></div>
 
       <div class="player">
         <div class="player-head">
@@ -764,7 +727,10 @@
     </section>
 
     <footer>
-      © Jay · Lent 2026
+이 페이지는 개인 묵상 기록을 위한 공간이며,
+링크를 받은 소수와 조용히 나누기 위해 만들어졌습니다.
+
+© Jay · Lent 2026
     </footer>
   </div>
 
@@ -778,7 +744,6 @@
       row.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
     }
 
-    // center pill on click/tap
     (function bindTimelineClicks(){
       const row = document.getElementById('timelineRow');
       if (!row) return;
@@ -787,7 +752,6 @@
       });
     })();
 
-    // today: badge + pill highlight + center + card scroll
     (function highlightToday(){
       const now = new Date();
       const mm = String(now.getMonth() + 1).padStart(2, '0');
