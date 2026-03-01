@@ -39,10 +39,6 @@
       --playerBgB: rgba(255,122,24,.10);
       --playerSurface: rgba(18,18,18,.6);
 
-      --embedBg: rgba(0,0,0,.35);
-      --embedLine: rgba(255,255,255,.10);
-      --embedShadow: 0 10px 22px rgba(0,0,0,.35);
-
       --pillBg: rgba(18,18,18,.55);
       --pillLine: rgba(255,255,255,.08);
 
@@ -269,7 +265,7 @@
     }
     .songmeta{ font-size:12px; color:var(--muted2); font-weight:900; }
 
-    /* Player (kept, but iframe removed) */
+    /* Player container */
     .player{
       margin-top:12px;
       padding:12px;
@@ -375,38 +371,110 @@
       .tlabel{ display:none; }
     }
 
-    /* ===== Minimal Custom Audio Player ===== */
+    /* =========================================================
+       Apple Music-ish skin (drop-in override for .mplayer)
+       - No per-player HTML edits needed
+       ========================================================= */
     .mplayer{
       display:flex;
       align-items:center;
-      gap:10px;
-      padding:12px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:rgba(18,18,18,.45);
+      gap:14px;
+      padding:14px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      background:
+        radial-gradient(900px 220px at 12% 10%, rgba(255,181,92,.14), transparent 60%),
+        linear-gradient(180deg, rgba(28,28,30,.78) 0%, rgba(18,18,18,.55) 100%);
+      backdrop-filter: blur(10px);
     }
+
     .mp-btn{
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      font-size:16px;
+      line-height:46px;
+      padding:0;
+      border:1px solid rgba(255,181,92,.28);
+      background: rgba(255,181,92,.14);
+      color:var(--accent);
+      font-weight:950;
+      cursor:pointer;
+      flex:0 0 auto;
+    }
+
+    .mp-seek{
+      flex:1;
+      height:4px;
+      padding:0;
+      border-radius:999px;
+      background: rgba(255,255,255,.12);
+      accent-color: var(--accent);
+      min-width:140px;
+    }
+
+    .mp-time{
+      font-size:12px;
+      color: rgba(241,239,233,.70);
+      font-weight:900;
+      white-space:nowrap;
+      flex:0 0 auto;
+    }
+
+    .mp-volwrap{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-left:2px;
+      flex:0 0 auto;
+    }
+
+    .mp-volbtn{
       width:38px;
       height:38px;
-      border-radius:10px;
+      border-radius:999px;
       border:1px solid rgba(255,181,92,.22);
       background:rgba(255,181,92,.10);
       color:var(--accent);
       font-weight:950;
       cursor:pointer;
       flex:0 0 auto;
+      font-size:14px;
     }
-    .mp-seek{
-      flex:1;
+
+    .mp-vol{
+      width:92px;
+      height:4px;
+      border-radius:999px;
+      background: rgba(255,255,255,.12);
       accent-color: var(--accent);
-      min-width:120px;
     }
-    .mp-time{
-      font-size:12px;
-      color:var(--muted2);
-      font-weight:900;
-      white-space:nowrap;
-      flex:0 0 auto;
+
+    @media (max-width:480px){
+      .mp-vol{ width:70px; }
+      .mp-seek{ min-width:120px; }
+    }
+
+    /* nicer range thumbs (webkit + firefox) */
+    .mp-seek::-webkit-slider-thumb,
+    .mp-vol::-webkit-slider-thumb{
+      -webkit-appearance:none;
+      appearance:none;
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      background: rgba(241,239,233,.92);
+      border:2px solid rgba(255,181,92,.55);
+      box-shadow: 0 6px 16px rgba(0,0,0,.35);
+    }
+    .mp-seek::-moz-range-thumb,
+    .mp-vol::-moz-range-thumb{
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      background: rgba(241,239,233,.92);
+      border:2px solid rgba(255,181,92,.55);
+      box-shadow: 0 6px 16px rgba(0,0,0,.35);
     }
   </style>
 </head>
@@ -896,8 +964,8 @@
       }, 250);
     })();
 
-    /* ===== Minimal Audio Players ===== */
-    (function initMinimalPlayers(){
+    /* ===== Apple Music-ish Players (auto volume UI + download button text) ===== */
+    (function initAppleMusicishPlayers(){
       const fmt = (s)=>{
         if(!isFinite(s) || s < 0) return '0:00';
         const m = Math.floor(s/60);
@@ -905,51 +973,83 @@
         return `${m}:${ss}`;
       };
 
+      // Change "파일 열기" -> "파일다운" + add download attribute
+      document.querySelectorAll('a.link[href$=".mp3"]').forEach(a=>{
+        a.textContent = '파일다운';
+        a.setAttribute('download', '');
+        a.setAttribute('target','_blank');
+        a.setAttribute('rel','noopener');
+      });
+
       const players = Array.from(document.querySelectorAll('.mplayer[data-audio-src]'));
-      const audios = players.map(p => p.querySelector('audio')).filter(Boolean);
+      const audios  = players.map(p => p.querySelector('audio')).filter(Boolean);
 
       const stopOthers = (currentAudio)=>{
         audios.forEach(a=>{
-          if(a && a !== currentAudio){
-            a.pause();
-          }
+          if(a && a !== currentAudio) a.pause();
         });
       };
 
       players.forEach(p=>{
-        const src = p.getAttribute('data-audio-src');
+        const src   = p.getAttribute('data-audio-src');
         const audio = p.querySelector('audio');
-        const btn = p.querySelector('.mp-btn');
-        const seek = p.querySelector('.mp-seek');
-        const time = p.querySelector('.mp-time');
+        const btn   = p.querySelector('.mp-btn');
+        const seek  = p.querySelector('.mp-seek');
+        const time  = p.querySelector('.mp-time');
 
         if(!audio || !btn || !seek || !time) return;
+
+        // Inject volume controls (once)
+        if(!p.querySelector('.mp-volwrap')){
+          const wrap = document.createElement('div');
+          wrap.className = 'mp-volwrap';
+          wrap.innerHTML = `
+            <button class="mp-volbtn" type="button" aria-label="음소거">🔊</button>
+            <input class="mp-vol" type="range" min="0" max="100" value="85" aria-label="볼륨">
+          `;
+          time.insertAdjacentElement('beforebegin', wrap);
+        }
+
+        const vbtn = p.querySelector('.mp-volbtn');
+        const vol  = p.querySelector('.mp-vol');
 
         audio.src = src;
         audio.preload = 'metadata';
 
-        const setBtn = ()=>{
+        const setPlayBtn = ()=>{
           btn.textContent = audio.paused ? '▶' : '❚❚';
           btn.setAttribute('aria-label', audio.paused ? '재생' : '일시정지');
         };
 
+        const setVolIcon = ()=>{
+          if(!vbtn) return;
+          const muted = audio.muted || audio.volume === 0;
+          vbtn.textContent = muted ? '🔇' : '🔊';
+          vbtn.setAttribute('aria-label', muted ? '음소거 해제' : '음소거');
+        };
+
+        // Init volume
+        if(vol){
+          const initV = Math.min(1, Math.max(0, (Number(vol.value)||85)/100));
+          audio.volume = initV;
+        }
+        setVolIcon();
+        setPlayBtn();
+
+        // Play / Pause
         btn.addEventListener('click', async ()=>{
           stopOthers(audio);
-
           if(audio.paused){
-            try{
-              await audio.play();
-            }catch(e){
-              // autoplay policy / interaction issues
-            }
+            try{ await audio.play(); }catch(e){}
           }else{
             audio.pause();
           }
-          setBtn();
+          setPlayBtn();
         });
 
+        // Time / Seek
         audio.addEventListener('loadedmetadata', ()=>{
-          time.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+          time.textContent = `0:00 / ${fmt(audio.duration)}`;
         });
 
         audio.addEventListener('timeupdate', ()=>{
@@ -965,13 +1065,34 @@
 
         audio.addEventListener('ended', ()=>{
           seek.value = 0;
-          setBtn();
+          setPlayBtn();
         });
 
-        audio.addEventListener('pause', setBtn);
-        audio.addEventListener('play', setBtn);
+        audio.addEventListener('pause', setPlayBtn);
+        audio.addEventListener('play', setPlayBtn);
 
-        setBtn();
+        // Volume
+        if(vol){
+          vol.addEventListener('input', ()=>{
+            audio.muted = false;
+            audio.volume = Math.min(1, Math.max(0, vol.value/100));
+            setVolIcon();
+          });
+        }
+
+        if(vbtn){
+          vbtn.addEventListener('click', ()=>{
+            audio.muted = !audio.muted;
+            setVolIcon();
+          });
+        }
+
+        audio.addEventListener('volumechange', ()=>{
+          if(vol && !audio.muted){
+            vol.value = String(Math.round(audio.volume * 100));
+          }
+          setVolIcon();
+        });
       });
     })();
   </script>
