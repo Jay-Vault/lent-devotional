@@ -20,35 +20,103 @@
       font-display: swap;
     }
 
-    /* ===== Dark theme: Charcoal & Warm Gray ===== */
+    /* ===== Theme tokens ===== */
+    /* Default: Dark (charcoal/warm gray) + A accent (Warm Amber) */
     :root{
-      --bg:#121212;          /* main background (charcoal) */
-      --card:#1b1b1c;        /* card surface (warm gray) */
-      --card2:#202022;       /* slightly lifted surface */
-      --ink:#f1efe9;         /* primary text (warm ivory) */
-      --muted:#b9b6b0;       /* secondary text */
-      --muted2:#9a9893;      /* lighter secondary */
-      --accent:#b994ff;      /* soft lavender accent */
-      --accent2:#7d4fd6;     /* deeper accent */
+      --bg:#121212;
+      --bg2:#101010;
+      --card:#1b1b1c;
+      --card2:#202022;
+      --ink:#f1efe9;
+      --muted:#b9b6b0;
+      --muted2:#9a9893;
+
+      /* ✅ A: Warm Amber */
+      --accent:#ffb55c;      /* warm amber */
+      --accent2:#ff7a18;     /* deep orange */
+
       --line:rgba(255,255,255,.08);
-      --soft:rgba(185,148,255,.14);
+      --soft:rgba(255,181,92,.14);
       --shadow:0 14px 34px rgba(0,0,0,.45);
+
+      /* player background glows */
+      --playerBgA: rgba(255,181,92,.14);
+      --playerBgB: rgba(255,122,24,.10);
+      --playerSurface: rgba(18,18,18,.6);
+
+      --embedBg: rgba(0,0,0,.35);
+      --embedLine: rgba(255,255,255,.10);
+      --embedShadow: 0 10px 22px rgba(0,0,0,.35);
+
+      --pillBg: rgba(18,18,18,.55);
+      --pillLine: rgba(255,255,255,.08);
+
+      /* today highlight */
+      --todayGlow: rgba(255,181,92,.26);
+      --todayLine: rgba(255,122,24,.32);
+    }
+
+    /* Light theme overrides (keeps original purple for light) */
+    [data-theme="light"]{
+      --bg:#f8f6f2;
+      --bg2:#f4f1ea;
+      --card:#ffffff;
+      --card2:#ffffff;
+      --ink:#1f1f1f;
+      --muted:#6b6b6b;
+      --muted2:#6b6b6b;
+
+      --accent:#5a3d7a;
+      --accent2:#5a3d7a;
+
+      --line:rgba(0,0,0,.08);
+      --soft:rgba(90,61,122,.10);
+      --shadow:0 14px 34px rgba(0,0,0,.10);
+
+      --playerBgA: rgba(90,61,122,.12);
+      --playerBgB: rgba(255,155,80,.10);
+      --playerSurface: rgba(255,255,255,.85);
+
+      --embedBg: rgba(255,255,255,.95);
+      --embedLine: rgba(0,0,0,.08);
+      --embedShadow: 0 10px 22px rgba(0,0,0,.08);
+
+      --pillBg: rgba(255,255,255,.75);
+      --pillLine: rgba(0,0,0,.08);
+
+      --todayGlow: rgba(90,61,122,.16);
+      --todayLine: rgba(90,61,122,.22);
     }
 
     *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family:"SUIT",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
       background:
-        radial-gradient(1100px 420px at 20% -10%, rgba(125,79,214,.18), transparent 60%),
-        radial-gradient(900px 380px at 90% 20%, rgba(255,160,90,.08), transparent 62%),
-        linear-gradient(180deg, #121212 0%, #101010 100%);
+        radial-gradient(1100px 420px at 20% -10%, rgba(255,181,92,.16), transparent 60%),
+        radial-gradient(900px 380px at 90% 20%, rgba(255,122,24,.10), transparent 62%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
       color:var(--ink);
       line-height:1.65;
     }
-    .wrap{ max-width:820px; margin:0 auto; padding:32px 18px 78px; }
+    [data-theme="light"] body{
+      background:
+        radial-gradient(1100px 420px at 20% -10%, rgba(90,61,122,.14), transparent 60%),
+        radial-gradient(900px 380px at 90% 20%, rgba(255,155,80,.08), transparent 62%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    }
+
+    .wrap{ max-width:820px; margin:0 auto; padding:26px 18px 78px; }
 
     header{ margin-bottom:18px; }
+    .topbar{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
     h1{
       margin:0;
       font-size:28px;
@@ -59,10 +127,37 @@
       display:inline-block; margin-left:8px; padding:3px 10px; border-radius:999px;
       background:var(--soft); color:var(--accent); font-size:12px; font-weight:900;
       vertical-align:middle;
-      border:1px solid rgba(185,148,255,.22);
+      border:1px solid rgba(255,181,92,.22);
       font-family:"SUIT",sans-serif;
     }
+    [data-theme="light"] .badge{ border-color: rgba(90,61,122,.18); }
+
     .sub{ margin-top:10px; color:var(--muted); font-size:15px; }
+
+    /* Theme toggle button */
+    .toggle{
+      flex:0 0 auto;
+      margin-top:2px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--ink);
+      font-weight:900;
+      font-size:12px;
+      cursor:pointer;
+      user-select:none;
+    }
+    [data-theme="light"] .toggle{ background:rgba(255,255,255,.8); }
+    .toggle .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(255,181,92,.12);
+    }
+    [data-theme="light"] .toggle .dot{ box-shadow:0 0 0 4px rgba(90,61,122,.10); }
 
     /* ===== Timeline ===== */
     .timeline{
@@ -73,6 +168,9 @@
       border-radius:16px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(8px);
+    }
+    [data-theme="light"] .timeline{
+      background:linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(250,248,255,.92) 100%);
     }
     .timeline-title{
       font-size:14px;
@@ -94,17 +192,18 @@
       display:flex; align-items:center; gap:10px;
       padding:10px 12px;
       border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(18,18,18,.55);
+      border:1px solid var(--pillLine);
+      background:var(--pillBg);
       white-space:nowrap;
     }
-    .tpill:hover{ border-color: rgba(185,148,255,.26); }
+    .tpill:hover{ border-color: var(--todayLine); }
     .tdot{
       width:10px; height:10px; border-radius:50%;
       background:var(--accent);
-      box-shadow:0 0 0 4px rgba(185,148,255,.12);
+      box-shadow:0 0 0 4px rgba(255,181,92,.12);
       flex:0 0 auto;
     }
+    [data-theme="light"] .tdot{ box-shadow:0 0 0 4px rgba(90,61,122,.10); }
     .tdate{ font-weight:900; font-size:12px; color:var(--accent); }
     .tlabel{ font-size:12px; color:var(--muted); font-weight:900; }
 
@@ -118,7 +217,31 @@
       box-shadow: var(--shadow);
       scroll-margin-top:18px;
       backdrop-filter: blur(8px);
+      position:relative;
+      overflow:hidden;
     }
+    [data-theme="light"] .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(250,248,255,.92) 100%);
+    }
+
+    /* ✅ Today highlight */
+    .card.today{
+      border-color: var(--todayLine);
+      box-shadow: 0 18px 46px rgba(0,0,0,.50);
+    }
+    [data-theme="light"] .card.today{ box-shadow: 0 18px 46px rgba(0,0,0,.14); }
+    .card.today::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(1100px 260px at 10% 0%, var(--todayGlow), transparent 60%),
+        radial-gradient(900px 260px at 95% 40%, rgba(255,122,24,.12), transparent 62%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .card > *{ position:relative; z-index:1; }
+
     .meta{ color:var(--accent); font-weight:900; font-size:14px; margin-bottom:6px; }
     .theme{
       font-size:20px;
@@ -128,19 +251,25 @@
     }
     .scripture,.songline{ font-size:14px; color:var(--muted); }
 
-    /* ===== Player (dark friendly) ===== */
+    /* ===== Player ===== */
     .player{
       margin-top:12px;
       padding:12px;
       border:1px solid var(--line);
       border-radius:14px;
       background:
-        radial-gradient(1100px 260px at 10% 0%, rgba(185,148,255,.12), transparent 60%),
-        radial-gradient(900px 260px at 95% 40%, rgba(255,160,90,.07), transparent 60%),
-        linear-gradient(180deg, rgba(18,18,18,.6) 0%, rgba(20,20,20,.6) 100%);
-      position:relative;
+        radial-gradient(1100px 260px at 10% 0%, var(--playerBgA), transparent 60%),
+        radial-gradient(900px 260px at 95% 40%, var(--playerBgB), transparent 60%),
+        linear-gradient(180deg, var(--playerSurface) 0%, rgba(20,20,20,.55) 100%);
       overflow:hidden;
     }
+    [data-theme="light"] .player{
+      background:
+        radial-gradient(1100px 260px at 10% 0%, var(--playerBgA), transparent 60%),
+        radial-gradient(900px 260px at 95% 40%, var(--playerBgB), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.85) 0%, rgba(250,248,255,.85) 100%);
+    }
+
     .player-head{
       display:flex;
       justify-content:space-between;
@@ -153,21 +282,22 @@
     .link{
       font-size:12px; font-weight:900;
       color:var(--accent);
-      background:rgba(185,148,255,.14);
+      background:var(--soft);
       padding:6px 10px;
       border-radius:999px;
       text-decoration:none;
-      border:1px solid rgba(185,148,255,.22);
+      border:1px solid rgba(255,181,92,.22);
       white-space:nowrap;
     }
+    [data-theme="light"] .link{ border-color: rgba(90,61,122,.18); }
     .link:hover{ filter:brightness(1.06); }
 
     .embed{
       border-radius:12px;
       overflow:hidden;
-      background:rgba(0,0,0,.35);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:0 10px 22px rgba(0,0,0,.35);
+      background:var(--embedBg);
+      border:1px solid var(--embedLine);
+      box-shadow: var(--embedShadow);
     }
     .embed iframe{
       width:100%;
@@ -182,8 +312,9 @@
       white-space:pre-line;
       color: rgba(241,239,233,.92);
     }
+    [data-theme="light"] .one-liner{ color: rgba(31,31,31,.92); }
 
-    /* ===== Tabs (multi-song) ===== */
+    /* ===== Tabs ===== */
     .tabs{ margin-top:8px; }
     .tabs input[type="radio"]{ position:absolute; opacity:0; pointer-events:none; }
     .tabbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
@@ -193,15 +324,16 @@
       font-weight:950;
       padding:7px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--line);
       background:rgba(18,18,18,.45);
       color:var(--accent);
       user-select:none;
     }
+    [data-theme="light"] .tab{ background:rgba(255,255,255,.75); }
     #ps42_1:checked ~ .tabbar label[for="ps42_1"],
     #ps42_2:checked ~ .tabbar label[for="ps42_2"]{
-      background:rgba(185,148,255,.16);
-      border-color:rgba(185,148,255,.25);
+      background:var(--soft);
+      border-color: var(--todayLine);
     }
     .tabpanels .panel{ display:none; }
     #ps42_1:checked ~ .tabpanels #panel_ps42_1{ display:block; }
@@ -210,11 +342,12 @@
     /* Lyrics accordion (2/26 only) */
     details.lyrics{
       margin-top:12px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid var(--line);
       border-radius:12px;
       background:rgba(18,18,18,.45);
       overflow:hidden;
     }
+    [data-theme="light"] details.lyrics{ background:rgba(255,255,255,.75); }
     details.lyrics summary{
       cursor:pointer;
       padding:12px 12px;
@@ -224,6 +357,9 @@
       font-family:'HannaPro',"SUIT",sans-serif;
       background:linear-gradient(180deg, rgba(32,32,34,.65) 0%, rgba(18,18,18,.45) 100%);
     }
+    [data-theme="light"] details.lyrics summary{
+      background:linear-gradient(180deg, rgba(255,255,255,.92) 0%, rgba(250,248,255,.92) 100%);
+    }
     details.lyrics summary::-webkit-details-marker{ display:none; }
     .lyrics-body{
       padding:12px 12px 14px;
@@ -231,8 +367,9 @@
       font-size:14px;
       line-height:1.75;
       white-space:pre-wrap;
-      border-top:1px solid rgba(255,255,255,.10);
+      border-top:1px solid var(--line);
     }
+    [data-theme="light"] .lyrics-body{ color: rgba(31,31,31,.92); }
 
     footer{
       margin-top:48px;
@@ -244,6 +381,7 @@
 
     /* ===== Mobile tweaks ===== */
     @media (max-width:480px){
+      .wrap{ padding:22px 14px 70px; }
       h1{ font-size:26px; }
       .tpill{ padding:9px 10px; }
       .tlabel{ display:none; }
@@ -253,7 +391,7 @@
       .player-title{ font-size:12px; }
       .link{ padding:5px 9px; font-size:11px; }
 
-      .embed iframe{ height:92px; }  /* ✅ mobile: thinner black player */
+      .embed iframe{ height:92px; } /* ✅ mobile: thinner player */
     }
   </style>
 </head>
@@ -261,10 +399,19 @@
 <body>
   <div class="wrap">
     <header>
-      <h1>Jay's Lent Devotional <span class="badge">Link Only</span></h1>
-      <div class="sub">
-        멈추고, 하나님께 머무는 사순절<br/>
-        묵상 기록과 직접 녹음한 찬양을 함께 나눕니다.
+      <div class="topbar">
+        <div>
+          <h1>Jay's Lent Devotional <span class="badge">Link Only</span></h1>
+          <div class="sub">
+            멈추고, 하나님께 머무는 사순절<br/>
+            묵상 기록과 직접 녹음한 찬양을 함께 나눕니다.
+          </div>
+        </div>
+
+        <button class="toggle" id="themeToggle" type="button" aria-label="테마 전환">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="themeLabel">Dark</span>
+        </button>
       </div>
     </header>
 
@@ -286,7 +433,7 @@
     </section>
 
     <!-- 2/19 -->
-    <section class="card" id="d0219">
+    <section class="card" id="d0219" data-date="02-19">
       <div class="meta">🗓️ 2월 19일 (목)</div>
       <div class="theme">Lavish Love</div>
       <div class="scripture">📖 레위기 25:35–43</div>
@@ -307,7 +454,7 @@
     </section>
 
     <!-- 2/20 -->
-    <section class="card" id="d0220">
+    <section class="card" id="d0220" data-date="02-20">
       <div class="meta">🗓️ 2월 20일 (금)</div>
       <div class="theme">Living for Jesus</div>
       <div class="scripture">📖 데살로니가전서 5:12–23</div>
@@ -327,8 +474,8 @@
 하루의 태도와 선택을 주님께 맡기는 묵상</p>
     </section>
 
-    <!-- 2/21 (Tabbed) -->
-    <section class="card" id="d0221">
+    <!-- 2/21 -->
+    <section class="card" id="d0221" data-date="02-21">
       <div class="meta">🗓️ 2월 21일 (토)</div>
       <div class="theme">Remembering to Forget</div>
       <div class="scripture">📖 시편 42:1–8</div>
@@ -378,7 +525,7 @@
     </section>
 
     <!-- 2/22 -->
-    <section class="card" id="d0222">
+    <section class="card" id="d0222" data-date="02-22">
       <div class="meta">🗓️ 2월 22일 (주일)</div>
       <div class="theme">Schooled in Love</div>
       <div class="scripture">📖 요한일서 4:16–21</div>
@@ -399,7 +546,7 @@
     </section>
 
     <!-- 2/23 -->
-    <section class="card" id="d0223">
+    <section class="card" id="d0223" data-date="02-23">
       <div class="meta">🗓️ 2월 23일 (월)</div>
       <div class="theme">Humble Leadership</div>
       <div class="scripture">📖 요한복음 1:19–28</div>
@@ -420,7 +567,7 @@
     </section>
 
     <!-- 2/24 -->
-    <section class="card" id="d0224">
+    <section class="card" id="d0224" data-date="02-24">
       <div class="meta">🗓️ 2월 24일 (화)</div>
       <div class="theme">Missing the Divine</div>
       <div class="scripture">📖 이사야 53:1–6</div>
@@ -441,7 +588,7 @@
     </section>
 
     <!-- 2/25 -->
-    <section class="card" id="d0225">
+    <section class="card" id="d0225" data-date="02-25">
       <div class="meta">🗓️ 2월 25일 (수)</div>
       <div class="theme">Abusing God’s Name</div>
       <div class="scripture">📖 출애굽기 20:1–4, 7–8, 12–17</div>
@@ -462,7 +609,7 @@
     </section>
 
     <!-- 2/26 -->
-    <section class="card" id="d0226">
+    <section class="card" id="d0226" data-date="02-26">
       <div class="meta">🗓️ 2월 26일 (목)</div>
       <div class="theme">God’s Rainbow Answer</div>
       <div class="scripture">📖 창세기 9:12–16</div>
@@ -541,7 +688,7 @@
     </section>
 
     <!-- 2/27 -->
-    <section class="card" id="d0227">
+    <section class="card" id="d0227" data-date="02-27">
       <div class="meta">🗓️ 2월 27일 (금)</div>
       <div class="theme">Prayer Walk</div>
       <div class="scripture">📖 열왕기하 4:31–35</div>
@@ -561,7 +708,7 @@
     </section>
 
     <!-- 2/28 -->
-    <section class="card" id="d0228">
+    <section class="card" id="d0228" data-date="02-28">
       <div class="meta">🗓️ 2월 28일 (토)</div>
       <div class="theme">Faith of Friends</div>
       <div class="scripture">📖 마가복음 2:1–5</div>
@@ -586,5 +733,49 @@
       © Jay · Lent 2026
     </footer>
   </div>
+
+  <script>
+    // ===== Theme toggle (persisted) =====
+    (function initTheme(){
+      const root = document.documentElement;
+      const label = document.getElementById('themeLabel');
+      const btn = document.getElementById('themeToggle');
+
+      const saved = localStorage.getItem('jay_theme'); // 'dark' | 'light' | null
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      const startTheme = saved ? saved : (prefersDark ? 'dark' : 'light');
+      setTheme(startTheme);
+
+      btn.addEventListener('click', () => {
+        const next = (root.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
+        setTheme(next);
+        localStorage.setItem('jay_theme', next);
+      });
+
+      function setTheme(t){
+        root.setAttribute('data-theme', t);
+        label.textContent = (t === 'light') ? 'Light' : 'Dark';
+      }
+    })();
+
+    // ===== Today highlight & auto scroll (only if matching date exists) =====
+    (function highlightToday(){
+      const now = new Date();
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
+      const key = `${mm}-${dd}`;
+
+      const target = document.querySelector(`.card[data-date="${key}"]`);
+      if(!target) return;
+
+      document.querySelectorAll('.card.today').forEach(el => el.classList.remove('today'));
+      target.classList.add('today');
+
+      setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 250);
+    })();
+  </script>
 </body>
 </html>
