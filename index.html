@@ -27,7 +27,6 @@
       --muted:#b9b6b0;
       --muted2:#9a9893;
 
-      /* Accent A */
       --accent:#ffb55c;
       --accent2:#ff7a18;
 
@@ -45,7 +44,6 @@
       --todayGlow: rgba(255,181,92,.26);
       --todayLine: rgba(255,122,24,.32);
 
-      /* card tint (variant) */
       --cardA: rgba(255,181,92,.10);
       --cardB: rgba(255,122,24,.08);
       --cardC: rgba(255,255,255,.04);
@@ -305,7 +303,7 @@
       color: rgba(241,239,233,.92);
     }
 
-    /* Tabs (2/21) */
+    /* Tabs */
     .tabs{ margin-top:8px; }
     .tabs input[type="radio"]{ position:absolute; opacity:0; pointer-events:none; }
     .tabbar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
@@ -329,7 +327,7 @@
     #ps42_1:checked ~ .tabpanels #panel_ps42_1{ display:block; }
     #ps42_2:checked ~ .tabpanels #panel_ps42_2{ display:block; }
 
-    /* Lyrics accordion (2/26 only) */
+    /* Lyrics accordion */
     details.lyrics{
       margin-top:12px;
       border:1px solid var(--line);
@@ -373,7 +371,7 @@
 
     /* =========================================================
        Apple Music-ish skin (drop-in override for .mplayer)
-       - No per-player HTML edits needed
+       + mobile fix (no clipping) + SVG icons
        ========================================================= */
     .mplayer{
       display:flex;
@@ -386,6 +384,7 @@
         radial-gradient(900px 220px at 12% 10%, rgba(255,181,92,.14), transparent 60%),
         linear-gradient(180deg, rgba(28,28,30,.78) 0%, rgba(18,18,18,.55) 100%);
       backdrop-filter: blur(10px);
+      overflow:hidden; /* important: prevent mobile clipping */
     }
 
     .mp-btn{
@@ -440,7 +439,11 @@
       cursor:pointer;
       flex:0 0 auto;
       font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
     }
+    .mp-volbtn svg{ color: var(--accent); }
 
     .mp-vol{
       width:92px;
@@ -450,8 +453,10 @@
       accent-color: var(--accent);
     }
 
+    /* mobile: hide volume slider (icon only) so it never cuts */
     @media (max-width:480px){
-      .mp-vol{ width:70px; }
+      .mp-vol{ display:none; }
+      .mp-volwrap{ gap:0; }
       .mp-seek{ min-width:120px; }
     }
 
@@ -964,7 +969,7 @@
       }, 250);
     })();
 
-    /* ===== Apple Music-ish Players (auto volume UI + download button text) ===== */
+    /* ===== Apple Music-ish Players (mobile-safe + SVG volume icons) ===== */
     (function initAppleMusicishPlayers(){
       const fmt = (s)=>{
         if(!isFinite(s) || s < 0) return '0:00';
@@ -973,7 +978,20 @@
         return `${m}:${ss}`;
       };
 
-      // Change "파일 열기" -> "파일다운" + add download attribute
+      const ICON_VOL = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M11 5L6.5 9H3v6h3.5L11 19V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 6a8 8 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+        </svg>`;
+      const ICON_MUTE = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M11 5L6.5 9H3v6h3.5L11 19V5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M16 9l5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>`;
+
+      // Change "파일 열기" -> "파일다운" + download attribute
       document.querySelectorAll('a.link[href$=".mp3"]').forEach(a=>{
         a.textContent = '파일다운';
         a.setAttribute('download', '');
@@ -1004,7 +1022,7 @@
           const wrap = document.createElement('div');
           wrap.className = 'mp-volwrap';
           wrap.innerHTML = `
-            <button class="mp-volbtn" type="button" aria-label="음소거">🔊</button>
+            <button class="mp-volbtn" type="button" aria-label="음소거"></button>
             <input class="mp-vol" type="range" min="0" max="100" value="85" aria-label="볼륨">
           `;
           time.insertAdjacentElement('beforebegin', wrap);
@@ -1024,7 +1042,7 @@
         const setVolIcon = ()=>{
           if(!vbtn) return;
           const muted = audio.muted || audio.volume === 0;
-          vbtn.textContent = muted ? '🔇' : '🔊';
+          vbtn.innerHTML = muted ? ICON_MUTE : ICON_VOL;
           vbtn.setAttribute('aria-label', muted ? '음소거 해제' : '음소거');
         };
 
