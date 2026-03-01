@@ -371,7 +371,7 @@
 
     /* =========================================================
        Apple Music-ish skin (drop-in override for .mplayer)
-       + mobile fix (no clipping) + SVG icons
+       + mobile Now Playing layout + SVG icons
        ========================================================= */
     .mplayer{
       display:flex;
@@ -384,7 +384,7 @@
         radial-gradient(900px 220px at 12% 10%, rgba(255,181,92,.14), transparent 60%),
         linear-gradient(180deg, rgba(28,28,30,.78) 0%, rgba(18,18,18,.55) 100%);
       backdrop-filter: blur(10px);
-      overflow:hidden; /* important: prevent mobile clipping */
+      overflow:hidden;
     }
 
     .mp-btn{
@@ -435,10 +435,8 @@
       border:1px solid rgba(255,181,92,.22);
       background:rgba(255,181,92,.10);
       color:var(--accent);
-      font-weight:950;
       cursor:pointer;
       flex:0 0 auto;
-      font-size:14px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -453,14 +451,7 @@
       accent-color: var(--accent);
     }
 
-    /* mobile: hide volume slider (icon only) so it never cuts */
-    @media (max-width:480px){
-      .mp-vol{ display:none; }
-      .mp-volwrap{ gap:0; }
-      .mp-seek{ min-width:120px; }
-    }
-
-    /* nicer range thumbs (webkit + firefox) */
+    /* nicer range thumbs */
     .mp-seek::-webkit-slider-thumb,
     .mp-vol::-webkit-slider-thumb{
       -webkit-appearance:none;
@@ -480,6 +471,56 @@
       background: rgba(241,239,233,.92);
       border:2px solid rgba(255,181,92,.55);
       box-shadow: 0 6px 16px rgba(0,0,0,.35);
+    }
+
+    /* ===== Mobile Now Playing layout (2~3 lines) ===== */
+    .mp-times{ display:none; }
+
+    @media (max-width:520px){
+      .mplayer{
+        flex-wrap:wrap;
+        gap:12px;
+        padding:14px;
+      }
+
+      .mp-btn{ order:1; }
+
+      /* desktop time hides on mobile (prevents clipping) */
+      .mp-time{ display:none; }
+
+      /* seek bar full width */
+      .mp-seek{
+        order:2;
+        flex:0 0 100%;
+        min-width:0;
+      }
+
+      /* time row (left=current / right=remaining) */
+      .mp-times{
+        display:flex;
+        order:3;
+        flex:0 0 100%;
+        justify-content:space-between;
+        font-size:12px;
+        font-weight:900;
+        color: rgba(241,239,233,.62);
+        padding:0 2px;
+      }
+
+      /* volume row full width */
+      .mp-volwrap{
+        order:4;
+        flex:0 0 100%;
+        justify-content:space-between;
+        gap:10px;
+      }
+
+      .mp-vol{
+        display:block;
+        flex:1;
+        width:auto;
+        min-width:120px;
+      }
     }
   </style>
 </head>
@@ -969,7 +1010,7 @@
       }, 250);
     })();
 
-    /* ===== Apple Music-ish Players (mobile-safe + SVG volume icons) ===== */
+    /* ===== Apple Music-ish Players (mobile Now Playing layout + SVG icons) ===== */
     (function initAppleMusicishPlayers(){
       const fmt = (s)=>{
         if(!isFinite(s) || s < 0) return '0:00';
@@ -1028,8 +1069,21 @@
           time.insertAdjacentElement('beforebegin', wrap);
         }
 
+        // Inject mobile time row (once) under seek
+        if(!p.querySelector('.mp-times')){
+          const times = document.createElement('div');
+          times.className = 'mp-times';
+          times.innerHTML = `
+            <span class="mp-tcur">0:00</span>
+            <span class="mp-trem">-0:00</span>
+          `;
+          seek.insertAdjacentElement('afterend', times);
+        }
+
         const vbtn = p.querySelector('.mp-volbtn');
         const vol  = p.querySelector('.mp-vol');
+        const tcur = p.querySelector('.mp-tcur');
+        const trem = p.querySelector('.mp-trem');
 
         audio.src = src;
         audio.preload = 'metadata';
@@ -1067,12 +1121,24 @@
 
         // Time / Seek
         audio.addEventListener('loadedmetadata', ()=>{
+          // desktop
           time.textContent = `0:00 / ${fmt(audio.duration)}`;
+          // mobile
+          if(tcur) tcur.textContent = '0:00';
+          if(trem) trem.textContent = `-${fmt(audio.duration)}`;
         });
 
         audio.addEventListener('timeupdate', ()=>{
           seek.value = (audio.currentTime / audio.duration) * 100 || 0;
+
+          // desktop
           time.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+
+          // mobile (left current / right remaining)
+          if(tcur) tcur.textContent = fmt(audio.currentTime);
+          if(trem && isFinite(audio.duration)){
+            trem.textContent = `-${fmt(Math.max(0, audio.duration - audio.currentTime))}`;
+          }
         });
 
         seek.addEventListener('input', ()=>{
