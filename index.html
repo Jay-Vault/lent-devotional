@@ -415,12 +415,27 @@
       font-variant-numeric: tabular-nums;
     }
 
+    /* Desktop-only volume slider (show on web, hide on mobile) */
+    .mp-vol{
+      width:120px;
+      height:4px;
+      border-radius:999px;
+      background: rgba(255,255,255,.12);
+      accent-color: var(--accent);
+      flex:0 0 auto;
+      display:none; /* default hidden */
+    }
+    @media (min-width:700px){
+      .mp-vol{ display:block; }
+    }
+
     /* time text on mobile: shorter + never clip */
     @media (max-width:520px){
       .mplayer{ padding:12px; gap:10px; }
       .mp-btn{ width:44px; height:44px; }
       .mp-seek{ min-width:0; }
       .mp-time{ font-size:12px; }
+      /* volume stays hidden on mobile */
     }
   </style>
 </head>
@@ -457,6 +472,7 @@
         <a class="titem" href="#d0227" data-date="02-27"><div class="tpill"><span class="tdot"></span><span class="tdate">2/27</span><span class="tlabel">Prayer Walk</span></div></a>
         <a class="titem" href="#d0228" data-date="02-28"><div class="tpill"><span class="tdot"></span><span class="tdate">2/28</span><span class="tlabel">Faith of Friends</span></div></a>
         <a class="titem" href="#d0301" data-date="03-01"><div class="tpill"><span class="tdot"></span><span class="tdate">3/1</span><span class="tlabel">Go and Tell</span></div></a>
+        <a class="titem" href="#d0302" data-date="03-02"><div class="tpill"><span class="tdot"></span><span class="tdate">3/2</span><span class="tlabel">Refreshing Generosity</span></div></a>
       </div>
     </section>
 
@@ -478,6 +494,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-19.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -505,6 +522,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-20.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -553,6 +571,7 @@
               <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3">
                 <button class="mp-btn" type="button" aria-label="재생">▶</button>
                 <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+                <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
                 <span class="mp-time">0:00 · -0:00</span>
                 <audio preload="metadata" playsinline></audio>
               </div>
@@ -567,6 +586,7 @@
               <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3">
                 <button class="mp-btn" type="button" aria-label="재생">▶</button>
                 <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+                <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
                 <span class="mp-time">0:00 · -0:00</span>
                 <audio preload="metadata" playsinline></audio>
               </div>
@@ -597,6 +617,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-22.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -626,6 +647,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-23.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -653,6 +675,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-24.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -680,6 +703,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-25.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -707,6 +731,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-26.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -792,6 +817,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-27.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -818,6 +844,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-28.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -847,6 +874,7 @@
         <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-01.mp3">
           <button class="mp-btn" type="button" aria-label="재생">▶</button>
           <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
           <span class="mp-time">0:00 · -0:00</span>
           <audio preload="metadata" playsinline></audio>
         </div>
@@ -854,6 +882,37 @@
 
       <p class="one-liner">복음은 멀리 있는 이야기가 아니라,
 오늘 내 발걸음 위에서 시작되는 소식.</p>
+    </section>
+
+    <!-- 3/2 -->
+    <section class="card v3" id="d0302" data-date="03-02">
+      <div class="meta">🗓️ 3월 2일 (월)</div>
+      <div class="theme-row">
+        <h2 class="theme">Refreshing Generosity</h2>
+        <span class="vibe"><span class="icon">💧</span> 베풂 · 새로움</span>
+      </div>
+      <div class="scripture">📖 잠언 11:24–31</div>
+
+      <div class="songs">
+        <span class="songchip"><span class="note">♪</span>사랑은 여전히 사랑이어서</span>
+      </div>
+
+      <div class="player">
+        <div class="player-head">
+          <div class="player-title">🎧 듣기</div>
+          <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-02.mp3">파일다운</a>
+        </div>
+        <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-02.mp3">
+          <button class="mp-btn" type="button" aria-label="재생">▶</button>
+          <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+          <input class="mp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="볼륨">
+          <span class="mp-time">0:00 · -0:00</span>
+          <audio preload="metadata" playsinline></audio>
+        </div>
+      </div>
+
+      <p class="one-liner">붙잡을수록 메마르고,
+흘려보낼수록 살아난다.</p>
     </section>
 
     <footer>
@@ -938,7 +997,7 @@
       const targetCard = document.querySelector('.card[data-date="' + key + '"]');
       const targetItem = document.querySelector('.titem[data-date="' + key + '"]');
 
-      // 날짜가 페이지에 없으면(예: 3/2인데 카드 없음) 배지만 표기하고 끝
+      // 날짜가 페이지에 없으면(예: 3/5인데 카드 없음) 배지만 표기하고 끝
       if(!targetCard || !targetItem) return;
 
       document.querySelectorAll('.tpill.today').forEach(p => p.classList.remove('today'));
@@ -980,12 +1039,28 @@
         const audio = p.querySelector('audio');
         const btn   = p.querySelector('.mp-btn');
         const seek  = p.querySelector('.mp-seek');
+        const vol   = p.querySelector('.mp-vol');
         const time  = p.querySelector('.mp-time');
 
         if(!src || !audio || !btn || !seek || !time) return;
 
         audio.src = src;
         audio.preload = 'metadata';
+
+        // ---- Volume (desktop only UI) ----
+        const savedVol = localStorage.getItem('lentVol');
+        if(savedVol !== null){
+          const v = Math.min(1, Math.max(0, parseFloat(savedVol)));
+          if(isFinite(v)) audio.volume = v;
+        }
+        if(vol){
+          vol.value = String(audio.volume ?? 1);
+          vol.addEventListener('input', ()=>{
+            const v = Math.min(1, Math.max(0, parseFloat(vol.value)));
+            audio.volume = isFinite(v) ? v : 1;
+            localStorage.setItem('lentVol', String(audio.volume));
+          });
+        }
 
         const setBtn = ()=>{
           btn.textContent = audio.paused ? '▶' : '❚❚';
