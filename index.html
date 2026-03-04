@@ -116,7 +116,8 @@
       font-size:12px;
       font-weight:950;
       white-space:nowrap;
-      cursor:pointer;
+      cursor:default;
+      user-select:none;
     }
     .today-badge .spark{
       width:10px; height:10px; border-radius:50%;
@@ -173,6 +174,8 @@
       position:relative;
       overflow:hidden;
     }
+
+    /* 최신 카드 강조 (today 클래스 재활용) */
     .card.today{
       border-color: var(--todayLine);
       box-shadow: 0 18px 46px rgba(0,0,0,.50);
@@ -471,7 +474,7 @@
       </div>
     </section>
 
-    <!-- Cards (reordered to latest first by JS) -->
+    <!-- Cards (정렬은 JS에서 최신→과거로 재배치) -->
     <main id="cards">
 
       <!-- 2/19 -->
@@ -1150,7 +1153,6 @@
   </div>
 
   <script>
-    // ===== Helpers =====
     function fmt(s){
       if(!isFinite(s) || s < 0) return '0:00';
       const m = Math.floor(s/60);
@@ -1165,6 +1167,23 @@
       const width = titem.offsetWidth;
       const targetScroll = left - (row.clientWidth / 2) + (width / 2);
       row.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
+    }
+
+    function initTimeline(){
+      const row = document.getElementById('timelineRow');
+      if(row){
+        row.querySelectorAll('.titem').forEach(a=>{
+          a.addEventListener('click', ()=> centerTimelineItem(a));
+        });
+      }
+    }
+
+    function setTodayText(){
+      const now = new Date();
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
+      const todayText = document.getElementById('todayText');
+      if (todayText) todayText.textContent = (Number(mm) + '/' + Number(dd));
     }
 
     function reorderByDateDesc(){
@@ -1189,40 +1208,15 @@
       }
     }
 
-    function initTimeline(){
-      const row = document.getElementById('timelineRow');
-      if(row){
-        row.querySelectorAll('.titem').forEach(a=>{
-          a.addEventListener('click', ()=> centerTimelineItem(a));
-        });
-      }
-    }
+    function highlightLatestCard(){
+      const cardsWrap = document.getElementById('cards');
+      if(!cardsWrap) return;
 
-    function highlightToday(){
-      const now = new Date();
-      const mm = String(now.getMonth() + 1).padStart(2, '0');
-      const dd = String(now.getDate()).padStart(2, '0');
-      const key = mm + '-' + dd;
+      const firstCard = cardsWrap.querySelector('.card[data-date]');
+      if(!firstCard) return;
 
-      const todayText = document.getElementById('todayText');
-      if (todayText) todayText.textContent = (Number(mm) + '/' + Number(dd));
-
-      const targetCard = document.querySelector('.card[data-date="' + key + '"]');
-      const targetItem = document.querySelector('.titem[data-date="' + key + '"]');
-
-      if(!targetCard) return;
-
-      document.querySelectorAll('.card.today').forEach(el => el.classList.remove('today'));
-      targetCard.classList.add('today');
-
-      if(targetItem){
-        document.querySelectorAll('.tpill.today').forEach(p => p.classList.remove('today'));
-        const pill = targetItem.querySelector('.tpill');
-        if(pill) pill.classList.add('today');
-        setTimeout(() => centerTimelineItem(targetItem), 80);
-      }
-
-      setTimeout(() => targetCard.scrollIntoView({ behavior:'smooth', block:'start' }), 250);
+      document.querySelectorAll('.card.today').forEach(c => c.classList.remove('today'));
+      firstCard.classList.add('today');
     }
 
     async function forceDownload(url){
@@ -1377,14 +1371,12 @@
     }
 
     document.addEventListener('DOMContentLoaded', ()=>{
+      setTodayText();
       reorderByDateDesc();
+      highlightLatestCard();
       initTimeline();
-      highlightToday();
       initDownloads();
       initPlayers();
-
-      const badge = document.getElementById('todayBadge');
-      if(badge) badge.addEventListener('click', highlightToday);
     });
   </script>
 </body>
