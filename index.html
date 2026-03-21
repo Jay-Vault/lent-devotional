@@ -265,6 +265,11 @@
       color:var(--muted);
     }
 
+
+    .odb-link{
+      margin-top:10px;
+    }
+
     .songs{
       margin-top:10px;
       display:flex;
@@ -545,63 +550,50 @@
 
     <main id="cards">
 
-     <!-- 2/19 -->
-<section class="card" id="d0219" data-date="02-19">
-  <div class="meta">🗓️ 2월 19일 (목)</div>
-
-  <div class="theme-row">
-    <h2 class="theme">Lavish Love</h2>
-    <span class="vibe"><span class="icon">🤲</span> 사랑 · 베풂</span>
-  </div>
-
-  <div class="scripture">📖 레위기 25:35–43</div>
+      <!-- 2/19 -->
+      <section class="card" id="d0219" data-date="02-19">
+        <div class="meta">🗓️ 2월 19일 (목)</div>
+        <div class="theme-row">
+          <h2 class="theme">Lavish Love</h2>
+          <span class="vibe"><span class="icon">🤲</span> 사랑 · 베풂</span>
+        </div>
+        <div class="scripture">📖 레위기 25:35–43</div>
 
   <!-- ODB -->
   <div class="odb-link">
-    <a href="https://www.odbm.org/en/devotionals/devotional-category/lavish-love?ts=1771459200000" target="_blank" rel="noopener">
+    <a href="" target="_blank" rel="noopener">
       <span class="songchip">ODB 원문보기</span>
     </a>
   </div>
 
-  <div class="player">
-    <div class="player-head">
-
-      <!-- 🔥 곡 chip 이동 -->
-      <div class="songs">
-        <span class="songchip">
-          <span class="note">♪</span>Reckless Love
-        </span>
-      </div>
-
+<div class="player">
+          <div class="player-head">
+      <div class="songs"><span class="songchip"><span class="note">♪</span>Reckless Love</span></div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-19.mp3">파일다운</a>
-
     </div>
+          <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-19.mp3">
+            <button class="mp-btn" type="button" aria-label="재생">▶</button>
+            <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+            <span class="mp-time">0:00 · -0:00</span>
 
-    <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-19.mp3">
-      <button class="mp-btn" type="button" aria-label="재생">▶</button>
-      <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
-      <span class="mp-time">0:00 · -0:00</span>
+            <div class="mp-volwrap" aria-label="볼륨">
+              <button class="mp-volbtn" type="button" aria-label="음소거">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                  <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+                </svg>
+              </button>
+              <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
+            </div>
 
-      <div class="mp-volwrap" aria-label="볼륨">
-        <button class="mp-volbtn" type="button" aria-label="음소거">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
-          </svg>
-        </button>
-        <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
-      </div>
+            <audio preload="metadata" playsinline></audio>
+          </div>
+        </div>
 
-      <audio preload="metadata" playsinline></audio>
-    </div>
-  </div>
-
-  <p class="one-liner">
-조건 없이 베풀어지는 하나님의 사랑 앞에
-계산하지 않는 마음으로 서는 하루
-  </p>
-</section>
+        <p class="one-liner">조건 없이 베풀어지는 하나님의 사랑 앞에
+계산하지 않는 마음으로 서는 하루</p>
+      </section>
 
       <!-- 2/20 -->
       <section class="card" id="d0220" data-date="02-20">
@@ -611,13 +603,19 @@
           <span class="vibe"><span class="icon">🧭</span> 삶 · 방향</span>
         </div>
         <div class="scripture">📖 데살로니가전서 5:12–23</div>
-        <div class="songs"><span class="songchip"><span class="note">♪</span>한나의 노래</span></div>
 
-        <div class="player">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
           <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-20.mp3">파일다운</a>
-          </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>한나의 노래</span></div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-20.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-20.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -642,130 +640,85 @@
 하루의 태도와 선택을 주님께 맡기는 묵상</p>
       </section>
 
-<!-- 2/21 -->
-<section class="card" id="d0221" data-date="02-21">
-  <div class="meta">🗓️ 2월 21일 (토)</div>
-
-  <div class="theme-row">
-    <h2 class="theme">Remembering to Forget</h2>
-    <span class="vibe"><span class="icon">🌿</span> 기억 · 회복</span>
-  </div>
-
-  <div class="scripture">📖 시편 42:1–8</div>
+      <!-- 2/21 -->
+      <section class="card" id="d0221" data-date="02-21">
+        <div class="meta">🗓️ 2월 21일 (토)</div>
+        <div class="theme-row">
+          <h2 class="theme">Remembering to Forget</h2>
+          <span class="vibe"><span class="icon">🌿</span> 기억 · 회복</span>
+        </div>
+        <div class="scripture">📖 시편 42:1–8</div>
 
   <!-- ODB -->
   <div class="odb-link">
-    <a href="https://www.odbm.org/en/devotionals/devotional-category/remembering-to-forget?ts=1771632000000" target="_blank" rel="noopener">
+    <a href="" target="_blank" rel="noopener">
       <span class="songchip">ODB 원문보기</span>
     </a>
   </div>
 
-  <div class="player">
-    <div class="player-head">
+<div class="player">
+          <div class="player-head">
       <span class="songmeta">탭을 눌러 곡을 바꿔요</span>
-      <a class="link" id="ps42_download" href="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3">
-        파일다운
-      </a>
+      <a class="link" id="ps42_download" href="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3">파일다운</a>
     </div>
+          <div class="tabs">
+            <input type="radio" name="ps42" id="ps42_1" checked>
+            <input type="radio" name="ps42" id="ps42_2">
 
-    <div class="tabs">
-      <input type="radio" name="ps42" id="ps42_1" checked>
-      <input type="radio" name="ps42" id="ps42_2">
-
-      <div class="tabbar" role="tablist">
-        <label class="tab" for="ps42_1">너는 너의 하나님을 바라라</label>
-        <label class="tab" for="ps42_2">목마른 사슴이</label>
+            <div class="tabbar" role="tablist" aria-label="Psalm 42 songs">
+        <label class="tab" for="ps42_1" role="tab">너는 너의 하나님을 바라라</label>
+        <label class="tab" for="ps42_2" role="tab">목마른 사슴이</label>
       </div>
 
-      <div class="tabpanels">
-        <div class="panel" id="panel_ps42_1">
+            <div class="tabpanels">
+              <div class="panel" id="panel_ps42_1" role="tabpanel">
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3">
-            <button class="mp-btn" type="button">▶</button>
-            <input class="mp-seek" type="range" min="0" max="100" value="0">
-            <span class="mp-time">0:00 · -0:00</span>
+                  <button class="mp-btn" type="button" aria-label="재생">▶</button>
+                  <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+                  <span class="mp-time">0:00 · -0:00</span>
 
-            <div class="mp-volwrap">
-              <button class="mp-volbtn" type="button">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2"/>
-                  <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2"/>
-                  <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" opacity=".8"/>
-                </svg>
-              </button>
-              <input class="mp-vol" type="range" min="0" max="100" value="100">
-            </div>
+                  <div class="mp-volwrap" aria-label="볼륨">
+                    <button class="mp-volbtn" type="button" aria-label="음소거">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+                      </svg>
+                    </button>
+                    <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
+                  </div>
 
-            <audio preload="metadata" playsinline></audio>
-          </div>
-        </div>
+                  <audio preload="metadata" playsinline></audio>
+                </div>
+              </div>
 
-        <div class="panel" id="panel_ps42_2">
+              <div class="panel" id="panel_ps42_2" role="tabpanel">
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3">
-            <button class="mp-btn" type="button">▶</button>
-            <input class="mp-seek" type="range" min="0" max="100" value="0">
-            <span class="mp-time">0:00 · -0:00</span>
+                  <button class="mp-btn" type="button" aria-label="재생">▶</button>
+                  <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
+                  <span class="mp-time">0:00 · -0:00</span>
 
-            <div class="mp-volwrap">
-              <button class="mp-volbtn" type="button">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2"/>
-                  <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2"/>
-                  <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" opacity=".8"/>
-                </svg>
-              </button>
-              <input class="mp-vol" type="range" min="0" max="100" value="100">
+                  <div class="mp-volwrap" aria-label="볼륨">
+                    <button class="mp-volbtn" type="button" aria-label="음소거">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M11 5L6.5 9H3v6h3.5L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M15.5 8.5a5 5 0 010 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M18.5 6a9 9 0 010 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+                      </svg>
+                    </button>
+                    <input class="mp-vol" type="range" min="0" max="100" value="100" aria-label="볼륨 조절">
+                  </div>
+
+                  <audio preload="metadata" playsinline></audio>
+                </div>
+              </div>
             </div>
-
-            <audio preload="metadata" playsinline></audio>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <p class="one-liner">
-잊어야 할 것들을 내려놓고
-다시 하나님을 기억하는 연습
-  </p>
-</section>
-
-<script>
-(function(){
-  const r1 = document.getElementById('ps42_1');
-  const r2 = document.getElementById('ps42_2');
-  const dl = document.getElementById('ps42_download');
-
-  function syncDownload(){
-    dl.href = r2.checked
-      ? 'https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3'
-      : 'https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3';
-  }
-
-  r1.addEventListener('change', syncDownload);
-  r2.addEventListener('change', syncDownload);
-  syncDownload();
-})();
-</script>
-
-<script>
-(function(){
-  const r1 = document.getElementById('ps42_1');
-  const r2 = document.getElementById('ps42_2');
-  const dl = document.getElementById('ps42_download');
-
-  function syncDownload(){
-    if (r2.checked) {
-      dl.href = 'https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3';
-    } else {
-      dl.href = 'https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3';
-    }
-  }
-
-  r1.addEventListener('change', syncDownload);
-  r2.addEventListener('change', syncDownload);
-  syncDownload();
-})();
-</script>
+        <p class="one-liner">잊어야 할 것들을 내려놓고
+다시 하나님을 기억하는 연습</p>
+      </section>
 
       <!-- 2/22 -->
       <section class="card" id="d0222" data-date="02-22">
@@ -775,13 +728,19 @@
           <span class="vibe"><span class="icon">❤️</span> 사랑 · 배움</span>
         </div>
         <div class="scripture">📖 요한일서 4:16–21</div>
-        <div class="songs"><span class="songchip"><span class="note">♪</span>사랑은 여기 있으니</span></div>
 
-        <div class="player">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
           <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-22.mp3">파일다운</a>
-          </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>사랑은 여기 있으니</span></div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-22.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-22.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -814,15 +773,21 @@
           <span class="vibe"><span class="icon">👑</span> 겸손 · 왕되심</span>
         </div>
         <div class="scripture">📖 요한복음 1:19–28</div>
-        <div class="songs">
+
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
+          <div class="player-head">
+      <div class="songs">
           <span class="songchip"><span class="note">♪</span>내 마음의 한자리 + 주님만이 왕이십니다</span>
         </div>
-
-        <div class="player">
-          <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-23.mp3">파일다운</a>
-          </div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-23.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-23.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -855,13 +820,19 @@
           <span class="vibe"><span class="icon">🌊</span> 갈망 · 동행</span>
         </div>
         <div class="scripture">📖 이사야 53:1–6</div>
-        <div class="songs"><span class="songchip"><span class="note">♪</span>주님과 호숫가를 거닐다</span></div>
 
-        <div class="player">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
           <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-24.mp3">파일다운</a>
-          </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>주님과 호숫가를 거닐다</span></div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-24.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-24.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -894,13 +865,19 @@
           <span class="vibe"><span class="icon">🏷️</span> 이름 · 거룩</span>
         </div>
         <div class="scripture">📖 출애굽기 20:1–4, 7–8, 12–17</div>
-        <div class="songs"><span class="songchip"><span class="note">♪</span>어둔 날 다 지나고</span></div>
 
-        <div class="player">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
           <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-25.mp3">파일다운</a>
-          </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>어둔 날 다 지나고</span></div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-25.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-25.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -933,13 +910,19 @@
           <span class="vibe"><span class="icon">🌈</span> 약속 · 기억</span>
         </div>
         <div class="scripture">📖 창세기 9:12–16</div>
-        <div class="songs"><span class="songchip"><span class="note">♪</span>Yet Not I But Through Christ In Me (편곡)</span></div>
 
-        <div class="player">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
           <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-26.mp3">파일다운</a>
-          </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>Yet Not I But Through Christ In Me (편곡)</span></div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-26.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-26.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1030,13 +1013,19 @@
           <span class="vibe"><span class="icon">🙏</span> 기도 · 걸음</span>
         </div>
         <div class="scripture">📖 열왕기하 4:31–35</div>
-        <div class="songs"><span class="songchip"><span class="note">♪</span>하나님의 세계</span></div>
 
-        <div class="player">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
           <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-27.mp3">파일다운</a>
-          </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>하나님의 세계</span></div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-27.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-27.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1068,13 +1057,19 @@
           <span class="vibe"><span class="icon">🤝</span> 친구 · 믿음</span>
         </div>
         <div class="scripture">📖 마가복음 2:1–5</div>
-        <div class="songs"><span class="songchip"><span class="note">♪</span>혼자 걷지 않을 거예요</span></div>
 
-        <div class="player">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
           <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-28.mp3">파일다운</a>
-          </div>
+      <div class="songs"><span class="songchip"><span class="note">♪</span>혼자 걷지 않을 거예요</span></div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-02-28.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-02-28.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1106,15 +1101,21 @@
           <span class="vibe"><span class="icon">⛰️</span> 복음 · 걸음</span>
         </div>
         <div class="scripture">📖 로마서 10:12–15</div>
-        <div class="songs">
+
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
+          <div class="player-head">
+      <div class="songs">
           <span class="songchip"><span class="note">♪</span>복음들고 산을</span>
         </div>
-
-        <div class="player">
-          <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-01.mp3">파일다운</a>
-          </div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-01.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-01.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1147,15 +1148,21 @@
           <span class="vibe"><span class="icon">✨</span> 베풂 · 새로움</span>
         </div>
         <div class="scripture">📖 잠언 11:24–31</div>
-        <div class="songs">
+
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
+          <div class="player-head">
+      <div class="songs">
           <span class="songchip"><span class="note">♪</span>사랑은 여전히 사랑이어서</span>
         </div>
-
-        <div class="player">
-          <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-02.mp3">파일다운</a>
-          </div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-02.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-02.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1188,15 +1195,21 @@
           <span class="vibe"><span class="icon">🏰</span> 능력 · 보호</span>
         </div>
         <div class="scripture">📖 다니엘 6:25–28</div>
-        <div class="songs">
+
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
+          <div class="player-head">
+      <div class="songs">
           <span class="songchip"><span class="note">♪</span>A Mighty Fortress Is Our God</span>
         </div>
-
-        <div class="player">
-          <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-03.mp3">파일다운</a>
-          </div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-03.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-03.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1229,15 +1242,21 @@
           <span class="vibe"><span class="icon">🤲</span> 섬김 · 동행</span>
         </div>
         <div class="scripture">📖 누가복음 8:1–3</div>
-        <div class="songs">
+
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
+          <div class="player-head">
+      <div class="songs">
           <span class="songchip"><span class="note">♪</span>낮은 곳으로</span>
         </div>
-
-        <div class="player">
-          <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-04.mp3">파일다운</a>
-          </div>
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-04.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-04.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1271,16 +1290,20 @@
 
         <div class="scripture">📖 로마서 5:1–5</div>
 
-        <div class="songs">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
+          <div class="player-head">
+      <div class="songs">
           <span class="songchip"><span class="note">♪</span>고난 너머</span>
         </div>
-
-        <div class="player">
-          <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-05.mp3">파일다운</a>
-          </div>
-
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-05.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-05.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1329,16 +1352,20 @@
 
         <div class="scripture">📖 신명기 6:10–19</div>
 
-        <div class="songs">
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
+  </div>
+
+<div class="player">
+          <div class="player-head">
+      <div class="songs">
           <span class="songchip"><span class="note">♪</span>Goodness of God</span>
         </div>
-
-        <div class="player">
-          <div class="player-head">
-            <div class="player-title">🎧 듣기</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-06.mp3">파일다운</a>
-          </div>
-
+      <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-06.mp3">파일다운</a>
+    </div>
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-06.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1372,16 +1399,20 @@
 
   <div class="scripture">📖 에베소서 4:1–7</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>함께 지어져 가네</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>함께 지어져 가네</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-07.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-07.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1416,16 +1447,20 @@
 
   <div class="scripture">📖 시편 107:1–11, 41–43</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>감사와 찬양 드리며</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>감사와 찬양 드리며</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-08.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-08.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1460,16 +1495,20 @@
 
   <div class="scripture">📖 창세기 25:7–11</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>Enough</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>Enough</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-09.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-09.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1503,16 +1542,20 @@
 
   <div class="scripture">📖 데살로니가전서 4:13–18</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>Living Hope</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>Living Hope</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-10.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-10.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1546,16 +1589,20 @@
 
   <div class="scripture">📖 예레미야 3:11–17</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>여호와께 돌아가자</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>여호와께 돌아가자</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-11.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-11.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1589,16 +1636,20 @@
 
   <div class="scripture">📖 디모데후서 1:6–14</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>하나님의 부르심</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>하나님의 부르심</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-12.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-12.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1634,16 +1685,20 @@
 
   <div class="scripture">📖 욥기 2:7–13</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>공감하시네</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>공감하시네</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-13.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-13.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1678,18 +1733,19 @@
     <span class="vibe"><span class="icon">⏳</span> 신뢰 · 기다림</span>
   </div>
   <div class="scripture">📖 베드로후서 3:8–13</div>
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>주님의 시간에</span>
-    <span class="songchip"><span class="note">♪</span>Trust in God</span>
-    <span class="songmeta">탭으로 전환</span>
+
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기 (2곡)</div>
       <span class="songmeta">탭을 눌러 곡을 바꿔요</span>
+      <a class="link" id="p314_download" href="https://jay-vault.github.io/lent-audio/audio/2026-03-14-a.mp3">파일다운</a>
     </div>
-
     <div class="tabs">
       <input type="radio" name="p314" id="p314_1" checked>
       <input type="radio" name="p314" id="p314_2">
@@ -1701,11 +1757,6 @@
 
       <div class="tabpanels">
         <div class="panel" id="panel_p314_1" role="tabpanel">
-          <div class="player-head" style="margin:0 0 10px;">
-            <div class="player-title">🎵 주님의 시간에</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-14-a.mp3">파일다운</a>
-          </div>
-
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-14-a.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1727,11 +1778,6 @@
         </div>
 
         <div class="panel" id="panel_p314_2" role="tabpanel">
-          <div class="player-head" style="margin:0 0 10px;">
-            <div class="player-title">🎵 Trust in God</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-14-b.mp3">파일다운</a>
-          </div>
-
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-14-b.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1769,16 +1815,20 @@
 
   <div class="scripture">📖 마태복음 5:13–16</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>나를 세상의 빛으로</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>나를 세상의 빛으로</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-15.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-15.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1814,16 +1864,20 @@
 
   <div class="scripture">📖 출애굽기 35:20–29</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>내 삶 드리리</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>내 삶 드리리</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-16.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-16.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1859,16 +1913,20 @@
 
   <div class="scripture">📖 요한복음 6:35, 41–51</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>하나님께서 세상을 사랑하사</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>하나님께서 세상을 사랑하사</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-17.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-17.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1904,16 +1962,20 @@
 
   <div class="scripture">📖 전도서 4:8–12</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>너를 위해 기도한다</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>너를 위해 기도한다</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-18.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-18.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1949,16 +2011,20 @@
 
   <div class="scripture">📖 야고보서 1:2–8</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>Waiting Here for You</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>Waiting Here for You</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-19.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-19.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -1992,18 +2058,19 @@
     <span class="vibe"><span class="icon">🌅</span> 회복 · 기쁨</span>
   </div>
   <div class="scripture">📖 시편 59:9–17</div>
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>아무것도 두려워말라</span>
-    <span class="songchip"><span class="note">♪</span>내 기쁨 되신 주</span>
-    <span class="songmeta">탭으로 전환</span>
+
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기 (2곡)</div>
       <span class="songmeta">탭을 눌러 곡을 바꿔요</span>
+      <a class="link" id="p320_download" href="https://jay-vault.github.io/lent-audio/audio/2026-03-20-a.mp3">파일다운</a>
     </div>
-
     <div class="tabs">
       <input type="radio" name="p320" id="p320_1" checked>
       <input type="radio" name="p320" id="p320_2">
@@ -2015,11 +2082,6 @@
 
       <div class="tabpanels">
         <div class="panel" id="panel_p320_1" role="tabpanel">
-          <div class="player-head" style="margin:0 0 10px;">
-            <div class="player-title">🎵 아무것도 두려워말라</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-20-a.mp3">파일다운</a>
-          </div>
-
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-20-a.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -2041,11 +2103,6 @@
         </div>
 
         <div class="panel" id="panel_p320_2" role="tabpanel">
-          <div class="player-head" style="margin:0 0 10px;">
-            <div class="player-title">🎵 내 기쁨 되신 주</div>
-            <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-20-b.mp3">파일다운</a>
-          </div>
-
           <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-20-b.mp3">
             <button class="mp-btn" type="button" aria-label="재생">▶</button>
             <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -2082,16 +2139,20 @@
 
   <div class="scripture">📖 고린도후서 4:5–12</div>
 
-  <div class="songs">
-    <span class="songchip"><span class="note">♪</span>나의 모습 나의 소유</span>
+  <!-- ODB -->
+  <div class="odb-link">
+    <a href="" target="_blank" rel="noopener">
+      <span class="songchip">ODB 원문보기</span>
+    </a>
   </div>
 
-  <div class="player">
+<div class="player">
     <div class="player-head">
-      <div class="player-title">🎧 듣기</div>
+      <div class="songs">
+    <span class="songchip"><span class="note">♪</span>나의 모습 나의 소유</span>
+  </div>
       <a class="link" href="https://jay-vault.github.io/lent-audio/audio/2026-03-21.mp3">파일다운</a>
     </div>
-
     <div class="mplayer" data-audio-src="https://jay-vault.github.io/lent-audio/audio/2026-03-21.mp3">
       <button class="mp-btn" type="button" aria-label="재생">▶</button>
       <input class="mp-seek" type="range" min="0" max="100" value="0" aria-label="재생 위치">
@@ -2440,5 +2501,48 @@
       initPlayers();
     });
   </script>
+
+
+<script>
+(function(){
+  const r1 = document.getElementById('ps42_1');
+  const r2 = document.getElementById('ps42_2');
+  const dl = document.getElementById('ps42_download');
+  function syncDownload(){
+    dl.href = r2.checked ? 'https://jay-vault.github.io/lent-audio/audio/2026-02-21-a.mp3' : 'https://jay-vault.github.io/lent-audio/audio/2026-02-21-b.mp3';
+  }
+  r1.addEventListener('change', syncDownload);
+  r2.addEventListener('change', syncDownload);
+  syncDownload();
+})();
+</script>
+
+<script>
+(function(){
+  const r1 = document.getElementById('p314_1');
+  const r2 = document.getElementById('p314_2');
+  const dl = document.getElementById('p314_download');
+  function syncDownload(){
+    dl.href = r2.checked ? 'https://jay-vault.github.io/lent-audio/audio/2026-03-14-b.mp3' : 'https://jay-vault.github.io/lent-audio/audio/2026-03-14-a.mp3';
+  }
+  r1.addEventListener('change', syncDownload);
+  r2.addEventListener('change', syncDownload);
+  syncDownload();
+})();
+</script>
+
+<script>
+(function(){
+  const r1 = document.getElementById('p320_1');
+  const r2 = document.getElementById('p320_2');
+  const dl = document.getElementById('p320_download');
+  function syncDownload(){
+    dl.href = r2.checked ? 'https://jay-vault.github.io/lent-audio/audio/2026-03-20-b.mp3' : 'https://jay-vault.github.io/lent-audio/audio/2026-03-20-a.mp3';
+  }
+  r1.addEventListener('change', syncDownload);
+  r2.addEventListener('change', syncDownload);
+  syncDownload();
+})();
+</script>
 </body>
 </html>
